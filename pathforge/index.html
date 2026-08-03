@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PathForge CAM — G-Code Generation for CNC Machines</title>
+    <meta name="description" content="PathForge CAM turns 3D models into precision G-code for CNC machines. Free for students, licensed for shops and businesses.">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        body { background-color: #1A1B20; color: #E1E2E6; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1A1B20; }
+        ::-webkit-scrollbar-thumb { background: #2F313B; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00E5FF; }
+    </style>
+</head>
+<body class="font-sans antialiased text-[#E1E2E6] selection:bg-[#00E5FF] selection:text-[#1A1B20]">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-[#222329] border-b border-[#3A3C44] sticky top-0 z-50 backdrop-blur-md bg-opacity-95">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <span class="text-xl font-black tracking-wider text-[#00E5FF]">⚙️ PATHFORGE CAM</span>
+            <div class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                <a href="#features" class="text-[#A0A4B0] hover:text-[#00E5FF]">Features</a>
+                <a href="#how-it-works" class="text-[#A0A4B0] hover:text-[#00E5FF]">How It Works</a>
+                <a href="#pricing" class="text-[#A0A4B0] hover:text-[#00E5FF]">Pricing</a>
+                <a href="#about" class="text-[#A0A4B0] hover:text-[#00E5FF]">About</a>
+                <a href="#support" class="text-[#A0A4B0] hover:text-[#00E5FF]">Support</a>
+            </div>
+            <div class="flex items-center space-x-4 text-sm font-medium">
+                <a href="#account" class="text-[#A0A4B0] hover:text-[#00E5FF]">Sign In</a>
+                <a href="#checkout" class="bg-[#2F313B] text-[#00E5FF] border border-[#00E5FF]/40 px-4 py-2 rounded-lg text-xs font-bold hover:bg-[#00E5FF] hover:text-[#1A1B20] transition-all">Get PathForge</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="max-w-4xl mx-auto px-6 py-16 text-center">
+        <h1 class="text-4xl md:text-5xl font-black tracking-tight text-white mb-4">
+            Turn 3D Models Into Clean G-Code, Fast.
+        </h1>
+        <p class="text-md text-[#A0A4B0] max-w-2xl mx-auto">
+            PathForge CAM is a standalone desktop app that generates precise, machine-ready toolpaths for Tormach and other CNC mills. Create your free account below to get started.
+        </p>
+    </header>
+
+    <!-- FEATURES -->
+    <section id="features" class="max-w-6xl mx-auto px-6 py-12">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-[#222329] border border-[#3A3C44] rounded-xl p-5">
+                <div class="text-[#00E5FF] text-2xl mb-2">📐</div>
+                <h3 class="text-sm font-bold text-white mb-1">STL Import</h3>
+                <p class="text-xs text-[#A0A4B0]">Load 3D models directly and preview the stock and toolpaths before you cut.</p>
+            </div>
+            <div class="bg-[#222329] border border-[#3A3C44] rounded-xl p-5">
+                <div class="text-[#00E5FF] text-2xl mb-2">🎯</div>
+                <h3 class="text-sm font-bold text-white mb-1">Tormach-Ready Output</h3>
+                <p class="text-xs text-[#A0A4B0]">G-code tuned for Tormach controllers out of the box, with broad compatibility for other CNC mills.</p>
+            </div>
+            <div class="bg-[#222329] border border-[#3A3C44] rounded-xl p-5">
+                <div class="text-[#00E5FF] text-2xl mb-2">🌀</div>
+                <h3 class="text-sm font-bold text-white mb-1">Multi-Axis Strategies</h3>
+                <p class="text-xs text-[#A0A4B0]">Advanced toolpath strategies for complex geometry, unlocked on Personal and Business licenses.</p>
+            </div>
+            <div class="bg-[#222329] border border-[#3A3C44] rounded-xl p-5">
+                <div class="text-[#00E5FF] text-2xl mb-2">🖥️</div>
+                <h3 class="text-sm font-bold text-white mb-1">Runs Offline</h3>
+                <p class="text-xs text-[#A0A4B0]">A standalone desktop app. Generate G-code on the shop floor with no internet connection required.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works" class="max-w-5xl mx-auto px-6 py-16">
+        <h2 class="text-center text-2xl font-black text-white mb-2">How It Works</h2>
+        <p class="text-center text-sm text-[#A0A4B0] mb-10">From 3D model to machine-ready code in three steps.</p>
+        <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+                <div class="w-10 h-10 mx-auto mb-3 rounded-full bg-[#2F313B] border border-[#00E5FF]/40 text-[#00E5FF] font-mono font-bold flex items-center justify-center">1</div>
+                <h3 class="text-sm font-bold text-white mb-1">Import Your Model</h3>
+                <p class="text-xs text-[#A0A4B0]">Load an STL file and PathForge renders your part and stock in a live 3D viewport.</p>
+            </div>
+            <div class="text-center">
+                <div class="w-10 h-10 mx-auto mb-3 rounded-full bg-[#2F313B] border border-[#00E5FF]/40 text-[#00E5FF] font-mono font-bold flex items-center justify-center">2</div>
+                <h3 class="text-sm font-bold text-white mb-1">Set Your Toolpaths</h3>
+                <p class="text-xs text-[#A0A4B0]">Pick tooling, stepover, and cutting strategy. Preview the path before committing.</p>
+            </div>
+            <div class="text-center">
+                <div class="w-10 h-10 mx-auto mb-3 rounded-full bg-[#2F313B] border border-[#00E5FF]/40 text-[#00E5FF] font-mono font-bold flex items-center justify-center">3</div>
+                <h3 class="text-sm font-bold text-white mb-1">Export G-Code</h3>
+                <p class="text-xs text-[#A0A4B0]">Generate clean, machine-ready G-code and send it straight to your controller.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="max-w-6xl mx-auto px-6 py-12">
+        <h2 class="text-center text-2xl font-black text-white mb-2">Choose Your License</h2>
+        <p class="text-center text-sm text-[#A0A4B0] mb-10">Every license includes the same core engine. Higher tiers unlock advanced toolpath strategies and remove limits.</p>
+
+        <div class="grid md:grid-cols-3 gap-6 items-stretch">
+
+            <div id="tier-academic" class="license-card bg-[#222329] border border-[#3A3C44] rounded-xl p-6 flex flex-col justify-between transition-all">
+                <div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold text-white">Academic</h3>
+                        <span id="badge-academic" class="license-badge text-[9px] font-mono font-bold uppercase px-2 py-0.5 rounded bg-[#2F313B] text-[#A0A4B0]">Students &amp; Educators</span>
+                    </div>
+                    <div class="text-2xl font-black text-white mb-4">Free<span class="text-xs text-neutral-500 font-normal"> / forever</span></div>
+                    <p class="text-xs text-[#A0A4B0] mb-4">Free for students, teachers, and academic research. Multi-axis toolpath strategies are limited to keep this tier free.</p>
+                </div>
+                <button onclick="selectLicense('academic', 0)" class="w-full bg-[#2F313B] text-white py-2.5 rounded-lg text-xs font-bold font-mono tracking-wider uppercase hover:bg-[#414452] cursor-pointer">Choose Academic</button>
+            </div>
+
+            <div id="tier-personal" class="license-card bg-[#2C2D35] border border-[#00E5FF] rounded-xl p-6 flex flex-col justify-between shadow-[0_0_20px_rgba(0,229,255,0.1)] transition-all">
+                <div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold text-white">Personal</h3>
+                        <span id="badge-personal" class="license-badge text-[9px] font-mono font-bold uppercase px-2 py-0.5 rounded bg-[#00E5FF] text-[#1A1B20]">Most Popular</span>
+                    </div>
+                    <div class="text-2xl font-black text-white mb-4">$299<span class="text-xs text-neutral-500 font-normal"> / single seat</span></div>
+                    <p class="text-xs text-[#A0A4B0] mb-4">For home shops, makers, and prototyping. Every toolpath strategy unlocked, no limits on part size or path length.</p>
+                </div>
+                <button onclick="selectLicense('personal', 299)" class="w-full bg-[#00E5FF] text-[#1A1B20] py-2.5 rounded-lg text-xs font-bold font-mono tracking-wider uppercase hover:bg-cyan-400 cursor-pointer">Choose Personal</button>
+            </div>
+
+            <div id="tier-business" class="license-card bg-[#222329] border border-[#3A3C44] rounded-xl p-6 flex flex-col justify-between transition-all">
+                <div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold text-white">Business</h3>
+                        <span id="badge-business" class="license-badge text-[9px] font-mono font-bold uppercase px-2 py-0.5 rounded bg-[#2F313B] text-[#A0A4B0]">Shops &amp; Teams</span>
+                    </div>
+                    <div class="text-2xl font-black text-white mb-4">$800<span class="text-xs text-neutral-500 font-normal"> / seat</span></div>
+                    <p class="text-xs text-[#A0A4B0] mb-4">For commercial manufacturing shops. Everything in Personal, plus multi-seat deployment and priority support.</p>
+                </div>
+                <button onclick="selectLicense('business', 800)" class="w-full bg-[#2F313B] text-white py-2.5 rounded-lg text-xs font-bold font-mono tracking-wider uppercase hover:bg-[#414452] cursor-pointer">Choose Business</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="max-w-4xl mx-auto px-6 py-16">
+        <div class="bg-[#222329] border border-[#3A3C44] rounded-xl p-8">
+            <h2 class="text-2xl font-black text-white mb-4">About PathForge CAM</h2>
+            <!-- [FILL IN]: Swap this paragraph for a couple of sentences in your own
+                 words — why you built this, and who it's for. Real founder voice
+                 sells better than generic copy. Keep it short: 2-4 sentences is plenty. -->
+            <p class="text-sm text-[#A0A4B0] leading-relaxed mb-4">
+                PathForge CAM was built to make CNC toolpath generation simple and reliable,
+                without the cost or complexity of enterprise CAM software. It's tuned for
+                Tormach machines and built by someone who actually runs the machines it
+                generates code for.
+            </p>
+            <p class="text-sm text-[#A0A4B0] leading-relaxed">
+                The Academic license exists so students and educators can learn real CNC
+                workflows for free. Personal and Business licenses fund ongoing development
+                and support for makers and shops who rely on it daily.
+            </p>
+        </div>
+    </section>
+
+    <!-- ACCOUNT -->
+    <section id="account" class="max-w-3xl mx-auto px-6 py-8">
+        <div class="bg-[#222329] rounded-xl border border-[#3A3C44] p-6 relative">
+            <div class="flex justify-between items-center border-b border-[#3A3C44] mb-4">
+                <div class="flex font-mono text-xs font-bold">
+                    <button onclick="toggleAuthMode('signup')" id="tab-signup" class="px-4 py-2 border-b-2 border-[#00E5FF] text-[#00E5FF] cursor-pointer">Sign Up</button>
+                    <button onclick="toggleAuthMode('login')" id="tab-login" class="px-4 py-2 border-b-2 border-transparent text-[#A0A4B0] cursor-pointer">Log In</button>
+                </div>
+                <div id="auth-success-badge" class="hidden text-[10px] bg-green-950 border border-green-500 text-green-400 font-mono px-3 py-1 rounded">
+                    SIGNED IN AS: <span id="active-user-display"></span>
+                </div>
+            </div>
+
+            <h3 id="auth-portal-title" class="text-md font-bold text-white uppercase font-mono mb-4">Create Your Account</h3>
+
+            <form id="auth-form" onsubmit="handleAuthSubmit(event)" class="space-y-4 font-mono text-xs">
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[#A0A4B0] uppercase mb-1">Email Address</label>
+                        <input type="email" id="auth-email" placeholder="you@example.com" required class="w-full bg-[#16171B] border border-[#3A3C44] rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-[#00E5FF]">
+                    </div>
+                    <div>
+                        <label class="block text-[#A0A4B0] uppercase mb-1">Password</label>
+                        <input type="password" id="auth-password" placeholder="••••••••" required minlength="8" class="w-full bg-[#16171B] border border-[#3A3C44] rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-[#00E5FF]">
+                    </div>
+                </div>
+                <div id="password-confirm-row">
+                    <label class="block text-[#A0A4B0] uppercase mb-1">Confirm Password</label>
+                    <input type="password" id="auth-confirm-password" placeholder="••••••••" required class="w-full bg-[#16171B] border border-[#3A3C44] rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-[#00E5FF]">
+                </div>
+                <button type="submit" class="w-full bg-[#2F313B] text-[#E1E2E6] border border-[#4A4D55] py-2.5 rounded-xl font-bold hover:border-[#00E5FF] transition-colors cursor-pointer">
+                    <span id="auth-submit-text">Create Account</span>
+                </button>
+                <p class="text-[10px] text-[#6B6E78] normal-case">
+                    ⚠️ Demo mode: accounts aren't saved yet. Real sign-up (Supabase) plugs in during Phase 3.
+                </p>
+            </form>
+        </div>
+    </section>
+
+    <!-- CHECKOUT -->
+    <section id="checkout" class="max-w-3xl mx-auto px-6 pb-16">
+        <div class="bg-[#222329] rounded-xl border border-[#3A3C44] p-6 shadow-2xl">
+            <h2 class="text-xl font-black text-white mb-1">⚙️ Complete Your Order</h2>
+            <p class="text-xs text-[#A0A4B0] mb-6 font-mono">SELECTED PLAN: <span id="summary-tier-name" class="text-[#00E5FF]">PERSONAL</span> // TOTAL: <span id="summary-display-price" class="text-white font-bold">$299.00</span></p>
+
+            <div id="payment-channels-gate" class="space-y-4">
+                <form onsubmit="handleCheckoutSubmit(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-mono text-[#A0A4B0] uppercase mb-1">Email for Delivery</label>
+                        <input type="email" id="customer-email" placeholder="Sign up or log in above to fill this in" required readonly class="w-full bg-[#16171B] border border-[#4A4D55] rounded-xl px-4 py-2.5 font-mono text-xs text-neutral-400 focus:outline-none">
+                    </div>
+                    <div id="card-fields" class="space-y-3">
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="col-span-2">
+                                <label class="block text-xs font-mono text-[#A0A4B0] uppercase mb-1">Card Number</label>
+                                <input type="text" placeholder="4000 1234 5678 9010" class="w-full bg-[#16171B] border border-[#3A3C44] rounded-xl px-4 py-2.5 font-mono text-xs text-white focus:outline-none focus:border-[#00E5FF]">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono text-[#A0A4B0] uppercase mb-1">Expiry / CVV</label>
+                                <input type="text" placeholder="MM/YY - CVC" class="w-full bg-[#16171B] border border-[#3A3C44] rounded-xl px-4 py-2.5 font-mono text-xs text-white focus:outline-none focus:border-[#00E5FF]">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-[#00E5FF] text-[#1A1B20] py-3 rounded-xl font-mono text-xs font-black uppercase tracking-wider hover:bg-cyan-400 cursor-pointer shadow-lg transition-all">
+                        <span id="submit-btn-text">Pay — $299.00</span>
+                    </button>
+                    <p class="text-[10px] text-[#6B6E78] text-center normal-case">
+                        ⚠️ Demo mode: no real payment is processed yet. Paystack + Bitcoin checkout plug in during Phase 6.
+                    </p>
+                </form>
+            </div>
+
+            <div id="academic-instant-gate" class="hidden text-center p-4 bg-[#16171B] border border-dashed border-[#3A3C44] rounded-xl space-y-3">
+                <p class="text-xs font-mono text-emerald-400 font-bold">✓ Academic license confirmed</p>
+                <p class="text-[11px] text-[#A0A4B0] max-w-md mx-auto">Free for classroom and student use. No card required.</p>
+                <button onclick="triggerAcademicDownload()" class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-neutral-950 py-3 rounded-xl font-mono text-xs font-black uppercase tracking-wider hover:brightness-110 shadow-lg transition-all cursor-pointer">
+                    📥 Download Academic Edition (.zip)
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SUPPORT / FAQ -->
+    <section id="support" class="max-w-4xl mx-auto px-6 py-16">
+        <h2 class="text-center text-2xl font-black text-white mb-10">Support &amp; FAQ</h2>
+        <div class="space-y-4">
+            <div class="bg-[#222329] border border-[#3A3C44] rounded-xl p-5">
+                <h3 class="text-sm font-bold text-white mb-1">Which CNC machines does PathForge support?</h3>
+                <p class="text-xs text-[#A0A4B0]">PathForge is tuned specifically for Tormach machines, and its G-code output is broadly compatible with other CNC mills that accept standard G-code. If you're unsure about your specific controller, reach out before buying.</p>
+            </div>
+            <div class="bg-[#222329] border border-[#3A3C44] rounded-xl p-5">
+                <h3 class="text-sm font-bold text-white mb-1">What's the difference between the license tiers?</h3>
+                <p class="text-xs text-[#A0A4B0]">Academic is free with limited multi-axis strategies, for learning and coursework. Personal unlocks every strategy for a single seat. Business adds multi-seat deployment for shops and teams. Full breakdown is in the Pricing section above.</p>
+            </div>
+            <div class="bg-[#222329] border border-[#3A3C44] rounded-xl p-5">
+                <h3 class="text-sm font-bold text-white mb-1">Do I need an internet connection to use it?</h3>
+                <p class="text-xs text-[#A0A4B0]">No. PathForge runs fully offline once installed and licensed. An internet connection is only needed to activate your license the first time.</p>
+            </div>
+            <div class="bg-[#222329] border border-[#3A3C44] rounded-xl p-5">
+                <h3 class="text-sm font-bold text-white mb-1">What's your refund policy?</h3>
+                <!-- [FILL IN]: Decide your real refund window (e.g. 14 days) before launch.
+                     This is a placeholder — pick a policy and update it in Phase 7. -->
+                <p class="text-xs text-[#A0A4B0]">[FILL IN: e.g. "Full refund within 14 days if you haven't activated a license."] Contact support below to request one.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="max-w-3xl mx-auto px-6 py-16">
+        <div class="bg-[#222329] border border-[#3A3C44] rounded-xl p-8 text-center">
+            <h2 class="text-2xl font-black text-white mb-2">Still Have Questions?</h2>
+            <p class="text-sm text-[#A0A4B0] mb-6">Reach out directly — real support from the person who builds this.</p>
+            <!-- [FILL IN]: Replace with your real support email once you pick one
+                 on your domain, e.g. support@yourdomain.com -->
+            <a href="mailto:support@pathforgecam.com" class="inline-block bg-[#00E5FF] text-[#1A1B20] px-6 py-3 rounded-xl text-sm font-black uppercase tracking-wider hover:bg-cyan-400 transition-all">
+                ✉️ support@pathforgecam.com
+            </a>
+        </div>
+    </section>
+
+    <footer class="max-w-6xl mx-auto px-6 py-8 border-t border-[#2F313B] text-center text-[10px] text-[#6B6E78] font-mono space-y-2">
+        <div class="flex justify-center gap-6">
+            <a href="#features" class="hover:text-[#00E5FF]">Features</a>
+            <a href="#pricing" class="hover:text-[#00E5FF]">Pricing</a>
+            <a href="#about" class="hover:text-[#00E5FF]">About</a>
+            <a href="#support" class="hover:text-[#00E5FF]">Support</a>
+            <a href="#contact" class="hover:text-[#00E5FF]">Contact</a>
+        </div>
+        <div>© 2026 PathForge CAM. All rights reserved.</div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
