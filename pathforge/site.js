@@ -118,21 +118,43 @@
   /* ---------- Cloudflare Turnstile (spam protection) ---------- */
   var forms = Array.prototype.slice.call(document.querySelectorAll("form.js-signup"));
   var siteKey = String(cfg.turnstileSiteKey || "");
+  // If the check can't load (ad blocker, VPN, weak connection), visitors are NOT locked out:
+  // the form explains what to try and uses the WhatsApp / direct-download fallback instead.
+  function tsFailed(f) {
+    if (f._tsFailed) return;
+    f._tsFailed = true;
+    var slot = f.querySelector(".turnstile-slot");
+    if (slot) {
+      slot.innerHTML = "";
+      var p = document.createElement("p");
+      p.className = "small muted ts-note";
+      p.textContent = "The \"verify you are human\" check couldn't load. An ad blocker, VPN or weak connection can cause this. You can still send the form.";
+      slot.appendChild(p);
+    }
+  }
   if (siteKey && forms.length) {
     window.pfTurnstileReady = function () {
       forms.forEach(function (f) {
         var slot = f.querySelector(".turnstile-slot");
-        if (!slot || !window.turnstile) return;
-        f._tsId = window.turnstile.render(slot, {
-          sitekey: siteKey,
-          callback: function (token) { f._tsToken = token; },
-          "expired-callback": function () { f._tsToken = ""; }
-        });
+        if (!slot || !window.turnstile) { tsFailed(f); return; }
+        try {
+          f._tsId = window.turnstile.render(slot, {
+            sitekey: siteKey,
+            callback: function (token) { f._tsToken = token; f._tsFailed = false; },
+            "expired-callback": function () { f._tsToken = ""; },
+            "error-callback": function () { tsFailed(f); return true; },
+            "unsupported-callback": function () { tsFailed(f); },
+            "timeout-callback": function () { f._tsToken = ""; }
+          });
+        } catch (e) { tsFailed(f); }
       });
     };
     var ts = document.createElement("script");
     ts.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=pfTurnstileReady";
-    ts.async = true; ts.defer = true; document.head.appendChild(ts);
+    ts.async = true; ts.defer = true;
+    ts.onerror = function () { forms.forEach(tsFailed); };             // blocked or offline
+    document.head.appendChild(ts);
+    setTimeout(function () { if (!window.turnstile) forms.forEach(tsFailed); }, 10000);
   }
 
   /* ---------- sign-up forms ---------- */
@@ -174,6 +196,10 @@
         window.location.href = "https://wa.me/" + wa + "?text=" + encodeURIComponent(text);
         return;
       }
+      if (form._tsFailed) {
+        show("We couldn't check that you're human, so the form can't be sent from this browser. Turn off your ad blocker or VPN for this site, or try another browser or your phone, then reload the page.", true);
+        return;
+      }
       show("Sign-ups aren't connected yet. Site owner: follow UPGRADE_GUIDE.md, part C.", true);
     }
 
@@ -188,7 +214,10 @@
       if (!data.name) { show("Enter your name.", true); form.elements.name.focus(); return; }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) { show("Enter a valid email address, like name@example.com.", true); form.elements.email.focus(); return; }
       if (!form.elements.consent.checked) { show("Tick the box to agree.", true); return; }
-      if (siteKey && !data.token) { show("Please complete the security check above the button, then try again.", true); return; }
+      if (siteKey && !data.token) {
+        if (form._tsFailed) { fallback(data); return; }   // check couldn't load: WhatsApp / direct download instead
+        show("Please wait for the security check above the button to finish (a tick appears), then try again.", true); return;
+      }
       if (data.company) { success(data.email); return; }        // spam trap filled: a bot. Pretend it worked.
 
       btn.disabled = true; btn.textContent = "Sending...";
