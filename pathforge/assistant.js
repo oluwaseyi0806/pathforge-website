@@ -47,7 +47,7 @@
   panel.className = "ask-panel"; panel.id = "ask-panel"; panel.hidden = true;
   panel.setAttribute("role", "dialog"); panel.setAttribute("aria-label", "Ask PathForge");
   panel.innerHTML =
-    '<div class="ask-head"><div><h2>Ask PathForge</h2><p>The program, the download and safe cutting</p></div>' +
+    '<div class="ask-head"><div><h2>Ask PathForge</h2><p>Ask anything: the program, CNC, or more</p></div>' +
     '<button type="button" class="ask-close" aria-label="Close">&times;</button></div>' +
     '<div class="ask-log" aria-live="polite"></div>' +
     '<div class="ask-chips"></div>' +
@@ -102,7 +102,7 @@
   function freeAnswer(question) {
     var m = bestMatches(question);
     if (!m.length || m[0].score < 0.9) {
-      bubble("bot", "Sorry, I don't know that one yet. Our team can help:", helpLinks());
+      bubble("bot", "Sorry, I can't answer that right now. Our team can help:", helpLinks());
       setChips(["How do I download it?", "Which machines does it work with?", "Is it safe to run on my machine?"]);
       return;
     }
@@ -148,7 +148,7 @@
     fab.classList.add("on");
     if (!greeted) {
       greeted = true;
-      bubble("bot", "Hi! Ask me anything about PathForge CAM: downloading it, your machine, or cutting safely.");
+      bubble("bot", "Hi! Ask me anything: PathForge CAM, your machine, CNC, or anything else.");
       setChips(["Is it free?", "How do I download and install it?", "Which machines does it work with?", "Windows says it protected my PC"]);
     }
     setTimeout(function () { input.focus(); }, 60);
