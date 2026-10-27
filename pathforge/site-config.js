@@ -10,7 +10,7 @@ window.PATHFORGE_CONFIG = {
 
   // Cloudflare Turnstile SITE key (public). Guide part D.
   // Leave empty until you have it.
-  turnstileSiteKey: "",
+  turnstileSiteKey: "0x4AAAAAAFoWffxbChZcLBbH",
 
   // Naira per 1 US dollar, to show "About N..." under the prices.
   // Update it now and then. Leave 0 to hide.
