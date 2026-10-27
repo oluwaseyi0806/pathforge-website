@@ -1,0 +1,83 @@
+// assistant-kb.js - what the "Ask" assistant knows about PathForge CAM.
+//
+// EDIT THIS FILE to teach the assistant. Each entry is one topic:
+//   q    : the question as a visitor might ask it
+//   k    : extra words people might use (helps the free mode find the answer)
+//   a    : the answer (plain text; keep it short and true)
+// The free mode picks the best-matching entry. The AI mode (when an AI key is
+// set in Vercel) reads ALL entries and answers in its own words from them.
+(function (root) {
+  var KB = [
+    { q: "What is PathForge CAM?",
+      k: "what does it do about software program cam stl gcode g-code explain",
+      a: "PathForge CAM is a Windows program that turns an STL file into G-code for a 3-axis CNC mill or router. Before you save, it cuts the G-code on a virtual block and checks for gouges, rapid crashes and overloads, so problems show up on screen instead of on your machine." },
+    { q: "Is it free? How much does it cost?",
+      k: "price cost pay payment money buy free licence license plan naira dollar",
+      a: "It's free during the public beta, for everyone: students, hobbyists and businesses, for learning and paid jobs. No account, no card, no time limit. Paid plans may come later; any change will be announced well in advance, and the version you downloaded keeps working." },
+    { q: "How do I download and install it?",
+      k: "download install setup get where link zip unzip open run start exe",
+      a: "Go to the Download section on this page and click \"Download for Windows\". Unzip the folder anywhere (for example Documents), open PathForgeCAM.exe, read the safety notice, tick the box and start. There is no installer and no admin rights are needed." },
+    { q: "Windows says \"Windows protected your PC\". Is it safe?",
+      k: "smartscreen warning protected virus antivirus malware safe trust blocked unsigned defender",
+      a: "That warning appears because the program is new and not yet code-signed. Only use the copy from this website. Click \"More info\", check the name is PathForgeCAM.exe, then \"Run anyway\". You can also check your copy: in PowerShell run Get-FileHash on the zip and compare the code with the one shown in the Download section." },
+    { q: "How do I check my download is genuine?",
+      k: "sha256 hash checksum verify genuine code powershell get-filehash",
+      a: "Open PowerShell in the folder with the zip and run: Get-FileHash .\\PathForgeCAM_Windows.zip. The long code it prints must be exactly the same as the code shown in the Download section. If it is different, delete the file and download it again." },
+    { q: "What computer do I need?",
+      k: "requirements system windows 10 11 mac apple linux laptop pc 64-bit ram computer",
+      a: "Windows 10 or 11, 64-bit. Mac and Linux aren't supported yet. A normal laptop is fine; very detailed STL files (100,000+ triangles) take longer to calculate." },
+    { q: "Which machines does it work with?",
+      k: "machine controller tormach pathpilot haas grbl mach3 mach4 router mill post processor support my",
+      a: "It writes G-code for Tormach PathPilot, Haas (NGC), GRBL 1.1 and Mach3/Mach4 controls, which covers most 3-axis mills and routers. If your machine isn't listed, sign up for update emails and tell us your machine." },
+    { q: "Which files can I import?",
+      k: "file format stl obj step dxf import open cad fusion solidworks",
+      a: "STL files, binary or text, exported from any CAD program (Fusion 360, SolidWorks, FreeCAD, Blender and so on). STEP, DXF and OBJ aren't supported yet." },
+    { q: "What toolpaths / strategies does it have?",
+      k: "strategy toolpath roughing finishing waterline parallel raster full job pocket",
+      a: "Full Job (best): roughs the stock away, finishes the walls exactly with waterline passes, then finishes tops and floors with parallel passes. You can also run Rough Clear, Waterline Z, Parallel X or Parallel Y on their own." },
+    { q: "Does it do 4-axis or 5-axis?",
+      k: "4th 4-axis 5-axis rotary a axis multi-axis indexing",
+      a: "No. It is 3-axis only. You can tilt the part before cutting, but it doesn't make 4th- or 5-axis toolpaths." },
+    { q: "Which cutters can I use?",
+      k: "tool end mill ball nose ballnose bull nose chamfer drill cutter bit",
+      a: "Flat end mills only for now. Ball-nose tools are planned. For smoother curved surfaces, use a smaller finish stepover." },
+    { q: "How does the safety check work?",
+      k: "safety check verify simulation gouge crash overload passed failed virtual block",
+      a: "After making the G-code, PathForge reads the finished file, exactly as your machine will, and cuts it on a virtual block. It reports any cut into the part (gouge), rapid moves through material, cuts that are too deep for the tool, and how much material is left. You can only save normally when it says PASSED." },
+    { q: "Is it safe to run on my real machine?",
+      k: "safe machine crash dry run first cut real damage break tool risk",
+      a: "The check is a strong simulation, but no software knows your real machine, tool, holder and clamps. Before running: check units, tool number and tool length offset; touch off X0 Y0 and Z0 exactly where the file header says; keep clamps out of the cutting area; dry run first (Z raised or cutting air); and run the first cut with the feed override low and a hand on the stop button. You are responsible for checking every program." },
+    { q: "Where is zero? How do I touch off?",
+      k: "zero touch off work offset g54 x0 y0 z0 origin top of stock corner centre",
+      a: "You choose it in the program under \"Where is zero?\": Z0 at the top or bottom of the stock, and X0 Y0 at the front-left corner, the centre of the stock, or the STL's own origin. The choice is written in the header of every G-code file, so you touch off at the same place on the machine." },
+    { q: "Millimetres or inches?",
+      k: "units mm inch inches metric imperial g20 g21",
+      a: "Both. Pick Millimetres (G21) or Inches (G20) in the program. Make sure your controller is set the same way; the file header says which units it uses." },
+    { q: "What feeds and speeds should I use?",
+      k: "feed speed rpm spindle chipload stepdown stepover aluminium aluminum steel wood plastic material",
+      a: "It depends on your machine, tool and material, so check your tool maker's chart. As a rough guide, stepdown is often 0.2-0.5 x the tool diameter in metal. PathForge warns you about risky settings, such as a stepdown deeper than the tool or a plunge faster than the feed." },
+    { q: "Does it need the internet? What about my files?",
+      k: "internet offline online privacy data upload cloud files account",
+      a: "No internet is needed. It runs on your own computer and never uploads your files or sends any data." },
+    { q: "Can I use it for paid / commercial jobs?",
+      k: "commercial business company sell parts customers paid jobs use",
+      a: "Yes. During the free beta you can use it for learning, personal and commercial work, on any number of your own computers. The G-code you make is yours. Please don't sell or re-share the program itself; share the website link instead." },
+    { q: "The program crashed or showed an error. What do I do?",
+      k: "error crash bug problem not working closes freeze log help issue",
+      a: "PathForge saves error details to %APPDATA%\\PathForge\\error_log.txt on your computer. Paste %APPDATA%\\PathForge into File Explorer's address bar to find it, then send that file to us with a short description." },
+    { q: "How do I uninstall it?",
+      k: "uninstall remove delete",
+      a: "Just delete the PathForgeCAM folder. Nothing else was installed. To also remove its settings, delete the folder %APPDATA%\\PathForge." },
+    { q: "How do I get updates?",
+      k: "update new version upgrade newsletter email notify",
+      a: "Sign up for update emails on this page and we'll tell you when there's a new version. To update, download the new zip and replace your old folder." },
+    { q: "What is the free STL test pack?",
+      k: "test pack sample stl parts examples practice",
+      a: "13 test parts (steps, pockets, overhangs, thin ribs, curved surfaces and a 100,000-triangle file) with the exact result PathForge gets. Use them to learn the program or to compare any CAM software. Get it in the \"Free STL test pack\" section." },
+    { q: "How do I contact you?",
+      k: "contact support help whatsapp email phone talk human person",
+      a: "Message us on WhatsApp (the number is at the bottom of the page) or sign up for update emails and tell us your question." }
+  ];
+  if (typeof module !== "undefined" && module.exports) module.exports = KB;
+  else root.PF_KB = KB;
+})(this);
