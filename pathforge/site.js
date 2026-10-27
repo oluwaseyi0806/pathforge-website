@@ -72,7 +72,8 @@
     shots.forEach(function (s) {
       var fig = document.createElement("figure");
       var img = document.createElement("img");
-      img.src = s.src; img.alt = s.caption || "PathForge CAM screenshot"; img.loading = "lazy";
+      img.src = s.src; img.alt = s.caption || "PathForge CAM screenshot"; img.loading = "lazy"; img.decoding = "async";
+      if (s.w && s.h) { img.width = s.w; img.height = s.h; }          // reserves space: no jumping while loading
       fig.appendChild(img);
       if (s.caption) { var cap = document.createElement("figcaption"); cap.textContent = s.caption; fig.appendChild(cap); }
       $("demo-shots").appendChild(fig);

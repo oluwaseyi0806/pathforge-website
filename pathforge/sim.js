@@ -4,8 +4,9 @@
    layered roughing path, then a finishing path. The tool never goes below
    the "safe height" (part surface grown by the tool radius), so the
    "Cut into part" readout is measured, not faked. */
-(function () {
+function pfSim() {
   var cv = document.getElementById("sim");
+  if (!cv || !cv.getContext) return;
   var ctx = cv.getContext("2d");
   var W = 120, H = 90, MM = 60 / W;              // grid cells, mm per cell
   var TOP = 18, R = 6;                          // stock top (mm), tool radius in cells (6 mm tool)
@@ -141,15 +142,24 @@
     }
     if (idx >= path.length) { done = true; pauseUntil = performance.now() + 3500; }
   }
-  var visible = true, raf = 0, last = 0;
+  var visible = true, raf = 0, last = 0, timer = 0, gap = 33;
   var RATE = path.length / 12000;               // whole job in about 12 seconds on any device
+  // Draw at most ~25 times a second, and slower on weak phones: after each frame we
+  // rest at least 3x as long as the frame took, so the page stays smooth and cool.
   function frame(now) {
     raf = 0;
-    var dt = last ? Math.min(now - last, 100) : 16; last = now;
+    var t0 = performance.now();
+    var dt = last ? Math.min(now - last, 250) : 16; last = now;
     if (done) { if (now > pauseUntil) resetStock(); }
     else step(Math.max(1, Math.round(dt * RATE)));
     draw(); readout();
-    if (visible && !reduce.matches) raf = requestAnimationFrame(frame);
+    var cost = performance.now() - t0;
+    gap = Math.min(300, Math.max(40, cost * 4));
+    schedule(Math.max(0, gap - cost));
+  }
+  function schedule(wait) {
+    if (raf || timer || !visible || reduce.matches || document.hidden) return;
+    timer = setTimeout(function () { timer = 0; if (visible && !document.hidden) raf = requestAnimationFrame(frame); }, wait);
   }
   function finishedStill() { resetStock(); while (!done) step(5000); draw(); readout(); }
   function size() {
@@ -157,14 +167,23 @@
     cv.width = Math.round(wpx * dpr); cv.height = Math.round(wpx * 11 / 16 * dpr); layout();
   }
   readColors(); size(); resetStock();
-  if (reduce.matches) { finishedStill(); }
-  else { step(0); draw(); readout(); raf = requestAnimationFrame(frame); }
+  function start() {
+    if (reduce.matches) { finishedStill(); return; }
+    step(0); draw(); readout(); last = 0; schedule(0);
+  }
+  // start after the page has finished loading, so the text and buttons appear first
+  if (document.readyState === "complete") setTimeout(start, 400);
+  else addEventListener("load", function () { setTimeout(start, 400); });
   new IntersectionObserver(function (es) {
     visible = es[0].isIntersecting;
-    if (visible && !raf && !reduce.matches) { last = 0; raf = requestAnimationFrame(frame); }
+    if (visible) { last = 0; schedule(0); }
   }).observe(cv);
+  document.addEventListener("visibilitychange", function () { if (!document.hidden) { last = 0; schedule(0); } });
   addEventListener("resize", function () { size(); draw(); });
   matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () { readColors(); draw(); });
   new MutationObserver(function () { readColors(); draw(); }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-  reduce.addEventListener("change", function () { if (reduce.matches) finishedStill(); else if (!raf) raf = requestAnimationFrame(frame); });
-})();
+  reduce.addEventListener("change", function () { if (reduce.matches) finishedStill(); else schedule(0); });
+}
+// build the simulation only after the page has loaded (keeps the first paint fast)
+if (document.readyState === "complete") pfSim();
+else addEventListener("load", pfSim);
