@@ -24,6 +24,7 @@ window.PATHFORGE_CONFIG = {
   //   { src: "screenshots/main-window.png", caption: "The main window" },
   screenshots: [
     { src: "screenshots/main-window.png",     caption: "Import an STL and see it in 3D" },
+    { src: "screenshots/passed.png",          caption: "Every program is checked on a virtual block before you save it" },
     { src: "screenshots/settings-panels.png", caption: "Set your tool, feeds, zero point and machine, then generate" },
   ],
 
