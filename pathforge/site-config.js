@@ -31,11 +31,11 @@ window.PATHFORGE_CONFIG = {
   // FREE DOWNLOAD (see RELEASE_GUIDE.md in the software folder).
   // Set downloadReady to true once the zip is uploaded to the GitHub release,
   // and paste the code from PathForgeCAM_Windows.zip.sha256.txt.
-  downloadReady: true,
+  downloadReady: false,
   downloadUrl: "https://github.com/oluwaseyi0806/pathforge-website/releases/latest/download/PathForgeCAM_Windows.zip",
-  downloadVersion: "4.4 Free Beta",
+  downloadVersion: "4.4.1 Free Beta",
   downloadSizeMb: 70,         // e.g. 95 - shown on the button; 0 hides it
-  downloadSha256: "9A16031337607041E04B15C8EA51415FE702361A2CADA261198B7DA56346B380",
+  downloadSha256: "",
 
   // Visitor statistics. Turn on in Vercel first (guide part H), then set true.
   vercelAnalytics: false
