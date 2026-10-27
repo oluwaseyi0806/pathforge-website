@@ -23,9 +23,8 @@ window.PATHFORGE_CONFIG = {
   // "screenshots" folder, then list them here, for example:
   //   { src: "screenshots/main-window.png", caption: "The main window" },
   screenshots: [
-    { src: "screenshots/main-window.png", caption: "Import an STL and see it in 3D" },
-    { src: "screenshots/settings.png",    caption: "Set your tool, feeds and zero point" },
-    { src: "screenshots/passed.png",      caption: "Every program is checked before you save it" },
+    { src: "screenshots/main-window.png",     caption: "Import an STL and see it in 3D" },
+    { src: "screenshots/settings-panels.png", caption: "Set your tool, feeds, zero point and machine, then generate" },
   ],
 
   // Visitor statistics. Turn on in Vercel first (guide part H), then set true.

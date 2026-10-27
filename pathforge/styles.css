@@ -229,3 +229,8 @@ input[type="text"]:focus, input[type="email"]:focus, select:focus { outline: non
 .hp { position: absolute !important; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 .turnstile-slot:empty { display: none; }
 .download .btn { width: auto; }
+
+/* screenshots: one per row; tall ones centred and kept to a sensible height */
+.shots figure { grid-column: 1 / -1; }
+.shots figure:not(:first-child) img { width: auto; max-height: 34rem; justify-self: center; }
+.shots figure:not(:first-child) figcaption { text-align: center; }
