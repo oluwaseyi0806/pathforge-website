@@ -23,8 +23,8 @@ window.PATHFORGE_CONFIG = {
   // "screenshots" folder, then list them here, for example:
   //   { src: "screenshots/main-window.png", caption: "The main window" },
   screenshots: [
-    { src: "screenshots/main-window.webp",     w: 1593, h: 852, caption: "Import an STL and see it in 3D" },
-    { src: "screenshots/passed.webp",          w: 1245, h: 869, caption: "Every program is checked on a virtual block before you save it" },
+    { src: "screenshots/main-window.webp", small: "screenshots/main-window-800.webp",     w: 1593, h: 852, caption: "Import an STL and see it in 3D" },
+    { src: "screenshots/passed.webp", small: "screenshots/passed-800.webp",          w: 1245, h: 869, caption: "Every program is checked on a virtual block before you save it" },
     { src: "screenshots/settings-panels.webp", w: 669, h: 740, caption: "Set your tool, feeds, zero point and machine, then generate" },
   ],
 
