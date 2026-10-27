@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Refund policy | PathForge CAM</title>
+<meta name="description" content="PathForge CAM makes G-code for 3-axis mills and routers, then cuts it on a virtual block to catch gouges, crashes and overloads before you cut metal.">
+<meta property="og:title" content="PathForge CAM - Cut it on screen first">
+<meta property="og:description" content="G-code for 3-axis mills and routers, checked on a virtual block before you cut.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#12202B">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+
+<header class="head" id="head">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="PathForge CAM home">
+      <svg viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="24" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 18V8h7a3.5 3.5 0 0 1 0 7H6" fill="none" stroke="var(--signal)" stroke-width="2.4" stroke-linejoin="round"/></svg>
+      PathForge CAM
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a class="wide" href="index.html#how">How it works</a>
+      <a class="wide" href="index.html#check">Safety check</a>
+      <a class="wide" href="index.html#pricing">Pricing</a>
+      <a class="wide" href="index.html#faq">FAQ</a>
+      <a class="btn sm" href="index.html#waitlist">Join the waitlist</a>
+      <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="drawer">Menu</button>
+    </nav>
+  </div>
+</header>
+<div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
+<nav class="drawer" id="drawer" aria-label="Menu" hidden>
+  <button class="drawer-close" id="drawer-close" type="button">Close</button>
+  <a href="index.html#how">How it works</a>
+  <a href="index.html#check">Safety check</a>
+  <a href="index.html#demo" data-needs-demo hidden>See it work</a>
+  <a href="index.html#pricing">Pricing</a>
+  <a href="index.html#testpack">Free test pack</a>
+  <a href="index.html#faq">FAQ</a>
+  <a href="about.html">About</a>
+  <a class="btn" href="index.html#waitlist">Join the waitlist</a>
+</nav>
+
+<main class="wrap"><div class="legal">
+  <h1>Refund policy</h1>
+  <p class="muted">Last updated 27 October 2026</p>
+  <p>We want you to be sure before you pay, and safe if it doesn't work out.</p>
+  <h2>14-day refund</h2>
+  <p>If PathForge CAM doesn't work for your machine, ask for a refund within 14 days of buying and you get your money back in full.</p>
+  <h2>How to ask</h2>
+  <ul>
+    <li>Send us a WhatsApp message with your order reference and the email you used to buy.</li>
+    <li>Tell us briefly what didn't work. It helps us fix it for others, but you don't have to.</li>
+  </ul>
+  <h2>What happens next</h2>
+  <ul>
+    <li>We reply within 2 working days.</li>
+    <li>The money goes back the way you paid, usually within 10 working days, depending on your bank.</li>
+    <li>Your licence key stops working once the refund is made.</li>
+  </ul>
+  <h2>The Academic plan</h2>
+  <p>The Academic plan is free, so there is nothing to refund.</p>
+</div></main>
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 PathForge CAM</span>
+    <span id="wa-line">WhatsApp: <b id="wa"></b></span>
+    <span class="r"><a href="about.html">About</a><a href="refund.html">Refunds</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></span>
+  </div>
+</footer>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script src="site-config.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

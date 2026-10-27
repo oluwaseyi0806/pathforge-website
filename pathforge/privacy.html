@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy notice | PathForge CAM</title>
+<meta name="description" content="PathForge CAM makes G-code for 3-axis mills and routers, then cuts it on a virtual block to catch gouges, crashes and overloads before you cut metal.">
+<meta property="og:title" content="PathForge CAM - Cut it on screen first">
+<meta property="og:description" content="G-code for 3-axis mills and routers, checked on a virtual block before you cut.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#12202B">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+
+<header class="head" id="head">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="PathForge CAM home">
+      <svg viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="24" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 18V8h7a3.5 3.5 0 0 1 0 7H6" fill="none" stroke="var(--signal)" stroke-width="2.4" stroke-linejoin="round"/></svg>
+      PathForge CAM
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a class="wide" href="index.html#how">How it works</a>
+      <a class="wide" href="index.html#check">Safety check</a>
+      <a class="wide" href="index.html#pricing">Pricing</a>
+      <a class="wide" href="index.html#faq">FAQ</a>
+      <a class="btn sm" href="index.html#waitlist">Join the waitlist</a>
+      <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="drawer">Menu</button>
+    </nav>
+  </div>
+</header>
+<div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
+<nav class="drawer" id="drawer" aria-label="Menu" hidden>
+  <button class="drawer-close" id="drawer-close" type="button">Close</button>
+  <a href="index.html#how">How it works</a>
+  <a href="index.html#check">Safety check</a>
+  <a href="index.html#demo" data-needs-demo hidden>See it work</a>
+  <a href="index.html#pricing">Pricing</a>
+  <a href="index.html#testpack">Free test pack</a>
+  <a href="index.html#faq">FAQ</a>
+  <a href="about.html">About</a>
+  <a class="btn" href="index.html#waitlist">Join the waitlist</a>
+</nav>
+
+<main class="wrap"><div class="legal">
+  <h1>Privacy notice</h1>
+  <p class="muted">Last updated 27 October 2026</p>
+  <p>This notice explains what PathForge CAM collects on this website and what we do with it.</p>
+  <h2>What we collect</h2>
+  <p>When you join the waitlist or ask for the free STL test pack, we collect your name and email address and, if you give them, your country, chosen plan and machine.</p>
+  <h2>Why we collect it</h2>
+  <ul><li>To send you the test pack you asked for.</li><li>To contact you when PathForge CAM is ready to download or buy.</li><li>To understand which machines and plans people need.</li></ul>
+  <p>We use your details only because you agreed to it when you joined. We don't sell them or share them for advertising.</p>
+  <h2>Where it is stored</h2>
+  <p>Sign-ups are stored with Supabase, our database provider. The website runs on Vercel. If you send your details by WhatsApp instead, they are kept in our WhatsApp chats.</p>
+  <h2>Security check</h2>
+  <p>To keep robots from flooding our forms, they use Cloudflare Turnstile. It checks that you're a person and receives technical information from your browser, such as your IP address, for that purpose only.</p>
+  <h2>The software itself</h2>
+  <p>PathForge CAM runs on your computer. Your STL files and G-code are not uploaded to us.</p>
+  <h2>How long we keep it</h2>
+  <p>Until you ask us to delete it, or until we stop running the waitlist.</p>
+  <h2>Your choices</h2>
+  <p>You can ask to see, correct or delete your details at any time by sending us a message on WhatsApp. We reply within 14 days.</p>
+  <h2>Cookies</h2>
+  <p>This website doesn't use cookies for tracking or advertising.</p>
+  <h2>Visitor statistics</h2>
+  <p>We count page visits with Vercel Web Analytics. It doesn't use cookies and doesn't identify you personally. It tells us things like how many people visited and which pages they read.</p>
+</div></main>
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 PathForge CAM</span>
+    <span id="wa-line">WhatsApp: <b id="wa"></b></span>
+    <span class="r"><a href="about.html">About</a><a href="refund.html">Refunds</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></span>
+  </div>
+</footer>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script src="site-config.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

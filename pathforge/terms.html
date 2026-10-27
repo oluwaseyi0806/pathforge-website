@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Terms of use | PathForge CAM</title>
+<meta name="description" content="PathForge CAM makes G-code for 3-axis mills and routers, then cuts it on a virtual block to catch gouges, crashes and overloads before you cut metal.">
+<meta property="og:title" content="PathForge CAM - Cut it on screen first">
+<meta property="og:description" content="G-code for 3-axis mills and routers, checked on a virtual block before you cut.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#12202B">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+
+<header class="head" id="head">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="PathForge CAM home">
+      <svg viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="24" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 18V8h7a3.5 3.5 0 0 1 0 7H6" fill="none" stroke="var(--signal)" stroke-width="2.4" stroke-linejoin="round"/></svg>
+      PathForge CAM
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a class="wide" href="index.html#how">How it works</a>
+      <a class="wide" href="index.html#check">Safety check</a>
+      <a class="wide" href="index.html#pricing">Pricing</a>
+      <a class="wide" href="index.html#faq">FAQ</a>
+      <a class="btn sm" href="index.html#waitlist">Join the waitlist</a>
+      <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="drawer">Menu</button>
+    </nav>
+  </div>
+</header>
+<div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
+<nav class="drawer" id="drawer" aria-label="Menu" hidden>
+  <button class="drawer-close" id="drawer-close" type="button">Close</button>
+  <a href="index.html#how">How it works</a>
+  <a href="index.html#check">Safety check</a>
+  <a href="index.html#demo" data-needs-demo hidden>See it work</a>
+  <a href="index.html#pricing">Pricing</a>
+  <a href="index.html#testpack">Free test pack</a>
+  <a href="index.html#faq">FAQ</a>
+  <a href="about.html">About</a>
+  <a class="btn" href="index.html#waitlist">Join the waitlist</a>
+</nav>
+
+<main class="wrap"><div class="legal">
+  <h1>Terms of use</h1>
+  <p class="muted">Last updated 27 October 2026</p>
+  <p>These terms cover this website and the PathForge CAM software. By using either, you agree to them.</p>
+  <h2>The website</h2>
+  <p>You may use this website to learn about PathForge CAM and to join the waitlist. Don't try to break, overload or copy the site.</p>
+  <h2>Licences</h2>
+  <ul>
+    <li>Academic: free, for students and teachers, for non-commercial use on one computer.</li>
+    <li>Personal: one-time payment, commercial use by one person on one computer, with one year of updates.</li>
+    <li>Business: one-time payment, use by one company on up to three computers, with one year of updates.</li>
+  </ul>
+  <p>A licence lets you use the software. It doesn't transfer ownership of the software, and you may not resell, share or reverse-engineer it.</p>
+  <h2>Machining safety</h2>
+  <p>CNC machines can cause serious injury and damage. PathForge CAM checks its G-code with a simulation, but no simulation can know your exact machine, fixture, tool or material.</p>
+  <ul><li>You are responsible for checking every program before you run it.</li><li>Run every new program as a dry run first, with the feed turned down.</li><li>Check that the tool, zero point and machine settings in the file header match your machine.</li></ul>
+  <h2>Limits of liability</h2>
+  <p>The software is provided as it is. To the extent the law allows, PathForge CAM is not liable for damage to machines, tools, materials or parts, or for lost time or income, from using the software or the G-code it makes.</p>
+  <h2>Payments and refunds</h2>
+  <p>Payment options will be published here before sales open. Refunds follow our <a href="refund.html">refund policy</a>.</p>
+  <h2>Contact</h2>
+  <p>Questions about these terms: message us on WhatsApp, number at the bottom of this page.</p>
+</div></main>
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 PathForge CAM</span>
+    <span id="wa-line">WhatsApp: <b id="wa"></b></span>
+    <span class="r"><a href="about.html">About</a><a href="refund.html">Refunds</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></span>
+  </div>
+</footer>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script src="site-config.js"></script>
+<script src="site.js"></script>
+</body>
+</html>
