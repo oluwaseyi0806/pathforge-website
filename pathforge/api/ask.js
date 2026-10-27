@@ -4,7 +4,8 @@
 // (keys are SECRET - never put them in a file, GitHub, a screenshot or a chat):
 //
 //   GEMINI_API_KEY      free key from aistudio.google.com (Google Gemini, free tier)
-//   GEMINI_MODEL        optional; if empty, a current "Flash" model is picked automatically
+//   GEMINI_MODEL        optional; if empty, current "Flash" models are picked automatically
+//                       (if one is busy, the next one is tried)
 //
 //   ANTHROPIC_API_KEY   key from console.anthropic.com (Claude, prepaid credit)
 //   ASSISTANT_MODEL     optional, default "claude-haiku-5-5"
@@ -62,30 +63,35 @@ async function askClaude(key, system, messages) {
 
 /* ------------------------------------------------------------------ Gemini */
 const GEMINI = "https://generativelanguage.googleapis.com/v1beta";
-let geminiModel = "";   // remembered once found (per server instance)
+let geminiModels = [];   // ranked list, remembered once found (per server instance)
+let geminiUsed = "";     // the model that answered last (shown on the check page)
 
-// Pick a current, free-tier friendly model: newest "flash" (prefer non-preview, then lite).
-async function findGeminiModel(key) {
+// Rank current, free-tier friendly models: "flash" models, newest first,
+// stable before preview; Flash-Lite kept as backups. Busy models are skipped.
+async function findGeminiModels(key) {
   const wanted = env("GEMINI_MODEL");
-  if (wanted) return wanted.replace(/^models\//, "");
-  if (geminiModel) return geminiModel;
+  if (geminiModels.length) return geminiModels;
   const r = await fetch(GEMINI + "/models?pageSize=200", { headers: { "x-goog-api-key": key } });
   if (!r.ok) throw new Error("Gemini model list said " + r.status + ": " + (await r.text().catch(() => "")).slice(0, 300));
   const list = ((await r.json()).models || [])
     .filter((m) => (m.supportedGenerationMethods || []).includes("generateContent"))
     .map((m) => String(m.name || "").replace(/^models\//, ""))
     .filter((n) => /^gemini-.*flash/.test(n) && !/(image|audio|tts|live|vision|embedding|thinking-exp)/.test(n));
-  if (!list.length) throw new Error("No Gemini Flash model is available for this key");
   const ver = (n) => parseFloat((n.match(/gemini-(\d+(?:\.\d+)?)/) || [0, 0])[1]) || 0;
   const score = (n) =>
     (/latest$/.test(n) ? 1000 : 0) + ver(n) * 10 - (/preview|exp/.test(n) ? 5 : 0) - (/lite/.test(n) ? 1 : 0);
-  list.sort((a, b) => score(b) - score(a));
-  geminiModel = list[0];
-  return geminiModel;
+  list.sort((x, y) => score(y) - score(x));
+  // best full Flash, best Flash-Lite, then the next ones - at most 4 tries per question
+  const full = list.filter((n) => !/lite/.test(n)), lite = list.filter((n) => /lite/.test(n));
+  const ranked = [];
+  if (wanted) ranked.push(wanted.replace(/^models\//, ""));
+  [full[0], lite[0], full[1], lite[1], full[2]].forEach((n) => { if (n && !ranked.includes(n)) ranked.push(n); });
+  if (!ranked.length) throw new Error("No Gemini Flash model is available for this key");
+  geminiModels = ranked.slice(0, 4);
+  return geminiModels;
 }
 
-async function askGemini(key, system, messages) {
-  const model = await findGeminiModel(key);
+async function geminiOnce(key, model, system, messages) {
   const r = await fetch(GEMINI + "/models/" + encodeURIComponent(model) + ":generateContent", {
     method: "POST",
     headers: { "x-goog-api-key": key, "content-type": "application/json" },
@@ -96,12 +102,30 @@ async function askGemini(key, system, messages) {
     }),
   });
   if (!r.ok) {
-    if (r.status === 404) geminiModel = "";          // model renamed/retired: pick again next time
-    throw new Error("Gemini (" + model + ") said " + r.status + ": " + (await r.text().catch(() => "")).slice(0, 300));
+    const err = new Error("Gemini (" + model + ") said " + r.status + ": " + (await r.text().catch(() => "")).slice(0, 200));
+    err.status = r.status;
+    throw err;
   }
   const out = await r.json();
   const parts = (((out.candidates || [])[0] || {}).content || {}).parts || [];
   return parts.filter((p) => p.text && !p.thought).map((p) => p.text).join("\n").trim();
+}
+
+async function askGemini(key, system, messages) {
+  const models = await findGeminiModels(key);
+  let last;
+  for (const model of models) {
+    try {
+      const text = await geminiOnce(key, model, system, messages);
+      if (text) { geminiUsed = model; return text; }
+      last = new Error("Gemini (" + model + ") gave an empty answer");
+    } catch (e) {
+      last = e;
+      if (e.status === 404) geminiModels = [];               // a model was renamed: rebuild the list next time
+      if (![404, 429, 500, 503].includes(e.status)) break;    // key/request problem: trying others won't help
+    }
+  }
+  throw last || new Error("Gemini gave no answer");
 }
 
 /* ------------------------------------------------------------------ status page */
@@ -113,7 +137,7 @@ async function statusPage(res) {
     if (!key) { lines.push(name + ": no key"); continue; }
     try {
       const a = await fn(key, "Reply with the single word OK.", [{ role: "user", content: "Test" }]);
-      lines.push(name + ": WORKING" + (name === "Gemini" ? " (model " + (env("GEMINI_MODEL") || geminiModel) + ")" : "") + " - test reply: " + a.slice(0, 40));
+      lines.push(name + ": WORKING" + (name === "Gemini" ? " (model " + geminiUsed + ")" : "") + " - test reply: " + a.slice(0, 40));
     } catch (e) {
       lines.push(name + ": PROBLEM - " + String(e.message).slice(0, 300));
     }
