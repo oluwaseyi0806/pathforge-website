@@ -79,6 +79,22 @@
     });
   }
 
+  /* ---------- free download ---------- */
+  (function () {
+    var ready = !!cfg.downloadReady && /^https:\/\//.test(String(cfg.downloadUrl || ""));
+    document.querySelectorAll(".dl-ready").forEach(function (el) { el.hidden = !ready; });
+    document.querySelectorAll(".dl-soon").forEach(function (el) { el.hidden = ready; });
+    if (cfg.downloadVersion && $("dl-ver")) $("dl-ver").textContent = cfg.downloadVersion;
+    if (ready && $("dl-btn")) {
+      $("dl-btn").href = cfg.downloadUrl;
+      var mb = Number(cfg.downloadSizeMb || 0);
+      $("dl-btn").textContent = "Download for Windows" + (mb > 0 ? " (" + mb + " MB)" : "");
+      $("dl-btn").addEventListener("click", function () { if (window.va) window.va("event", { name: "download" }); });
+    }
+    var hash = String(cfg.downloadSha256 || "").replace(/[^0-9a-fA-F]/g, "").toUpperCase();
+    if (ready && hash.length === 64 && $("dl-hash")) { $("dl-hash").textContent = hash; $("dl-hash-li").hidden = false; }
+  })();
+
   /* ---------- plan buttons choose the plan ---------- */
   document.querySelectorAll("[data-plan]").forEach(function (a) {
     a.addEventListener("click", function () { var sel = $("wl-plan"); if (sel) sel.value = a.getAttribute("data-plan"); });
@@ -139,7 +155,7 @@
         if (dl) dl.hidden = false;
         show("Thanks! Your download is ready below.");
       } else {
-        show("You're on the waitlist. We'll contact you at " + email + " when PathForge CAM 1.0 is ready.");
+        show("Thanks! We'll email " + email + " when there's a new version.");
       }
       if (window.va) window.va("event", { name: "signup", source: source });
     }
@@ -151,14 +167,14 @@
         return;
       }
       if (wa) {
-        var text = "Hello PathForge, please add me to the waitlist.\nName: " + data.name + "\nEmail: " + data.email +
-          (data.country ? "\nCountry: " + data.country : "") + "\nPlan: " + data.plan +
+        var text = "Hello PathForge, please add me to the update emails.\nName: " + data.name + "\nEmail: " + data.email +
+          (data.country ? "\nCountry: " + data.country : "") +
           (data.machine ? "\nMachine: " + data.machine : "");
-        show("WhatsApp is opening with your details. Press send in WhatsApp to finish joining. If it didn't open, message +" + wa + ".");
+        show("WhatsApp is opening with your details. Press send in WhatsApp to finish signing up. If it didn't open, message +" + wa + ".");
         window.location.href = "https://wa.me/" + wa + "?text=" + encodeURIComponent(text);
         return;
       }
-      show("The waitlist isn't connected yet. Site owner: follow UPGRADE_GUIDE.md, part C.", true);
+      show("Sign-ups aren't connected yet. Site owner: follow UPGRADE_GUIDE.md, part C.", true);
     }
 
     form.addEventListener("submit", function (e) {

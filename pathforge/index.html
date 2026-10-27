@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="styles.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PathForge CAM","applicationCategory":"DesignApplication","operatingSystem":"Windows 10, Windows 11","description":"CAM software that turns STL files into G-code for 3-axis CNC mills and routers and checks every move on a virtual block before cutting.","offers":[{"@type":"Offer","name":"Academic","price":"0","priceCurrency":"USD"},{"@type":"Offer","name":"Personal","price":"299","priceCurrency":"USD"},{"@type":"Offer","name":"Business","price":"800","priceCurrency":"USD"}]}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PathForge CAM","applicationCategory":"DesignApplication","operatingSystem":"Windows 10, Windows 11","description":"CAM software that turns STL files into G-code for 3-axis CNC mills and routers and checks every move on a virtual block before cutting.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"softwareVersion":"4.4"}
 </script>
 </head>
 <body>
@@ -30,9 +30,9 @@
     <nav class="nav" aria-label="Main">
       <a class="wide" href="#how">How it works</a>
       <a class="wide" href="#check">Safety check</a>
-      <a class="wide" href="#pricing">Pricing</a>
+      <a class="wide" href="#download">Download</a>
       <a class="wide" href="#faq">FAQ</a>
-      <a class="btn sm" href="#waitlist">Join the waitlist</a>
+      <a class="btn sm" href="#download">Download free</a>
       <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="drawer">Menu</button>
     </nav>
   </div>
@@ -43,11 +43,12 @@
   <a href="#how">How it works</a>
   <a href="#check">Safety check</a>
   <a href="#demo" data-needs-demo hidden>See it work</a>
-  <a href="#pricing">Pricing</a>
+  <a href="#download">Download</a>
+  <a href="#updates">Update emails</a>
   <a href="#testpack">Free test pack</a>
   <a href="#faq">FAQ</a>
   <a href="about.html">About</a>
-  <a class="btn" href="#waitlist">Join the waitlist</a>
+  <a class="btn" href="#download">Download free</a>
 </nav>
 
 <main id="top">
@@ -57,10 +58,10 @@
         <h1>Cut it on screen first.</h1>
         <p class="lede">PathForge CAM turns your STL into G-code for a 3-axis mill or router. Then it cuts that G-code on a virtual block before you press Cycle Start. Gouges, rapid crashes and overloads show up here, not on your spindle.</p>
         <div class="ctas">
-          <a class="btn" href="#waitlist">Join the waitlist</a>
+          <a class="btn" href="#download">Download free</a>
           <a class="btn line" href="#how">See how it works</a>
         </div>
-        <p class="small muted">Windows desktop app. Runs offline. Version 1.0 opens to the waitlist first.</p>
+        <p class="small muted">Free during the public beta. Windows 10 or 11. Runs offline.</p>
       </div>
       <figure class="sim">
         <canvas id="sim" width="880" height="605" role="img" aria-label="Live simulation: a flat end mill rough-cuts a block of aluminium in layers, then finishes a dome, a raised boss with a round pocket, and the floor."></canvas>
@@ -172,7 +173,7 @@ G0 G43 H01 Z5.</pre>
 
   <section id="limits">
     <div class="wrap">
-      <div class="sec-head"><h2>What it doesn't do yet</h2><p class="lede">So you know before you buy.</p></div>
+      <div class="sec-head"><h2>What it doesn't do yet</h2><p class="lede">So you know before you cut.</p></div>
       <ul class="limits">
         <li><h3>3-axis only</h3><p class="muted">No 4th or 5th axis machining. You can tilt the part before cutting.</p></li>
         <li><h3>Flat end mills only</h3><p class="muted">Ball-nose tools are planned. A finer finish stepover gives smoother curves.</p></li>
@@ -182,35 +183,49 @@ G0 G43 H01 Z5.</pre>
     </div>
   </section>
 
-  <section id="pricing">
+  <section id="download">
     <div class="wrap">
-      <div class="sec-head"><h2>Pay once. Use it for good.</h2><p class="lede">Prices in US dollars. Paid plans include one year of updates. Sales open to the waitlist first.</p></div>
-      <div class="plans">
-        <article class="plan">
-          <h3>Academic</h3><p class="price">Free</p>
-          <ul><li>For students and teachers</li><li>Non-commercial use</li><li>1 computer</li><li>All strategies and machines</li></ul>
-          <a class="btn line" href="#waitlist" data-plan="Academic">Join the waitlist</a>
-        </article>
-        <article class="plan main">
-          <span class="tag">Most popular</span>
-          <h3>Personal</h3><p class="price">$299<small>one-time</small></p><p class="ngn" data-usd="299" hidden></p>
-          <ul><li>For individuals and small shops</li><li>Commercial use allowed</li><li>1 computer</li><li>1 year of updates</li></ul>
-          <a class="btn" href="#waitlist" data-plan="Personal">Join the waitlist</a>
-        </article>
-        <article class="plan">
-          <h3>Business</h3><p class="price">$800<small>one-time</small></p><p class="ngn" data-usd="800" hidden></p>
-          <ul><li>For companies</li><li>Up to 3 computers</li><li>1 year of updates</li><li>Priority support on WhatsApp</li></ul>
-          <a class="btn line" href="#waitlist" data-plan="Business">Join the waitlist</a>
-        </article>
+      <div class="sec-head"><h2>Free during the public beta</h2><p class="lede">The full program, every strategy and every machine. Use it to learn and for real jobs. No account, no card, no time limit.</p></div>
+      <div class="dl">
+        <div class="dl-main">
+          <p class="dl-ready" hidden><a class="btn" id="dl-btn" href="#" rel="noopener">Download for Windows</a></p>
+          <p class="dl-soon notice" hidden>The first public build is being uploaded. <a href="#updates">Leave your email</a> and we'll tell you the moment it's ready.</p>
+          <p class="small muted" id="dl-meta">PathForge CAM <span id="dl-ver">4.4 Free Beta</span> · Windows 10 or 11, 64-bit · runs offline</p>
+          <ol class="dl-steps">
+            <li><b>Unzip</b> the folder anywhere, for example in Documents.</li>
+            <li><b>Open</b> <code>PathForgeCAM.exe</code>. No installer and no admin rights needed.</li>
+            <li><b>Read</b> the safety notice, tick the box and start.</li>
+          </ol>
+        </div>
+        <div class="dl-side">
+          <h3>Is the download safe?</h3>
+          <ul>
+            <li>It only comes from this site, hosted on GitHub. Nothing else is installed and nothing is sent over the internet.</li>
+            <li>Windows may say <i>"Windows protected your PC"</i> because the program is new and not yet code-signed. Click <b>More info</b>, check the name is <code>PathForgeCAM.exe</code>, then <b>Run anyway</b>.</li>
+            <li id="dl-hash-li" hidden>Check your copy: in PowerShell run <code>Get-FileHash .\PathForgeCAM_Windows.zip</code>. It must print <code class="hash" id="dl-hash"></code></li>
+          </ul>
+        </div>
+      </div>
+      <div class="dl-safety">
+        <h3>Before your first cut on a real machine</h3>
+        <ol>
+          <li>Only run programs whose preview says <b>PASSED</b>.</li>
+          <li>Check units, tool number and tool length offset match the file header.</li>
+          <li>Touch off X0 Y0 and Z0 exactly where the header says.</li>
+          <li>Clamp the stock and keep clamps out of the cutting area.</li>
+          <li>Dry run first: Z raised or cutting air.</li>
+          <li>First real cut with the feed override low and a hand on the stop button.</li>
+        </ol>
+        <p class="small muted">Beta software, provided as is. You are responsible for checking and running your programs. See the <a href="terms.html">terms</a>.</p>
       </div>
     </div>
   </section>
 
-  <section id="waitlist">
+  <section id="updates">
     <div class="wrap split">
       <div class="sec-head">
-        <h2>Join the waitlist</h2>
-        <p class="lede">We'll contact you when PathForge CAM 1.0 is ready. Waitlist members get first access.</p>
+        <h2>Get update emails</h2>
+        <p class="lede">New versions, fixes and tips. A few emails a year. Tell us your machine so we can test with it.</p>
       </div>
       <form class="form js-signup" id="wl" data-source="waitlist" novalidate>
         <div class="two">
@@ -219,13 +234,12 @@ G0 G43 H01 Z5.</pre>
         </div>
         <div class="two">
           <div class="f"><label for="wl-country">Country</label><input id="wl-country" name="country" type="text" autocomplete="country-name" maxlength="80"></div>
-          <div class="f"><label for="wl-plan">Plan</label><select id="wl-plan" name="plan"><option>Personal</option><option>Business</option><option>Academic</option><option>Not sure yet</option></select></div>
+          <div class="f"><label for="wl-machine">Your machine (optional)</label><input id="wl-machine" name="machine" type="text" maxlength="120" placeholder="For example: GRBL router, Haas VF-2"></div>
         </div>
-        <div class="f"><label for="wl-machine">Your machine (optional)</label><input id="wl-machine" name="machine" type="text" maxlength="120" placeholder="For example: GRBL router, Haas VF-2"></div>
         <label class="consent" for="wl-ok"><input id="wl-ok" name="consent" type="checkbox" required> <span>I agree that PathForge may contact me about PathForge CAM. Read the <a href="privacy.html">privacy notice</a>.</span></label>
         <div class="hp" aria-hidden="true"><label for="wl-company">Company</label><input id="wl-company" name="company" type="text" tabindex="-1" autocomplete="off"></div>
         <div class="turnstile-slot"></div>
-        <div><button class="btn" type="submit" id="wl-go">Join the waitlist</button></div>
+        <div><button class="btn" type="submit" id="wl-go">Send me updates</button></div>
         <p class="notice" id="wl-msg" role="status" hidden></p>
               </form>
     </div>
@@ -256,13 +270,14 @@ G0 G43 H01 Z5.</pre>
     <div class="wrap">
       <div class="sec-head"><h2>Questions</h2></div>
       <div class="faq">
-        <details><summary>Will it work with my machine?</summary><p>PathForge CAM writes G-code for Tormach PathPilot, Haas, GRBL and Mach3/Mach4 controls. Most 3-axis mills and routers use one of these. If yours isn't listed, tell us when you join the waitlist.</p></details>
+        <details><summary>Will it work with my machine?</summary><p>PathForge CAM writes G-code for Tormach PathPilot, Haas, GRBL and Mach3/Mach4 controls. Most 3-axis mills and routers use one of these. If yours isn't listed, tell us when you sign up for update emails.</p></details>
         <details><summary>Do I need the internet to use it?</summary><p>No. It runs on your computer. Your files are never uploaded.</p></details>
         <details><summary>Which files can I import?</summary><p>STL files, both binary and text, from any CAD program.</p></details>
-        <details><summary>Who can use the Academic plan?</summary><p>Students and teachers, for learning and non-commercial projects.</p></details>
-        <details><summary>What does "one year of updates" mean?</summary><p>Your licence works forever. New versions released in the first year after you buy are included at no extra cost.</p></details>
-        <details><summary>How will I pay?</summary><p>Payment options will be announced to the waitlist before sales open.</p></details>
-        <details><summary>Can I get a refund?</summary><p>Yes. If PathForge CAM doesn't work for your machine, ask within 14 days of buying for a full refund. See the <a href="refund.html">refund policy</a>.</p></details>
+        <details><summary>Is it really free?</summary><p>Yes. During the public beta PathForge CAM is free for everyone, for learning and for paid jobs. The G-code you make is yours.</p></details>
+        <details><summary>Will it stay free?</summary><p>Paid plans may come later with extra features and support. We will announce any change well before it happens, and the version you downloaded keeps working.</p></details>
+        <details><summary>Is it safe to download?</summary><p>Download it only from this website. It is a plain folder: nothing is installed, it needs no admin rights, and it never sends data over the internet. You can check the file with the SHA-256 code shown in the download section.</p></details>
+        <details><summary>Is it safe for my machine?</summary><p>Every program is cut on a virtual block before you can save it normally, and the file header says exactly where to touch off. But no software knows your real machine, tool and clamps. Always dry run a new program first, with the feed turned down.</p></details>
+        <details><summary>Something went wrong. What do I do?</summary><p>PathForge saves error details to <code>%APPDATA%\PathForge\error_log.txt</code> on your computer. Send that file to us on WhatsApp with a short description.</p></details>
       </div>
     </div>
   </section>
@@ -272,7 +287,7 @@ G0 G43 H01 Z5.</pre>
   <div class="wrap">
     <span>© 2026 PathForge CAM</span>
     <span id="wa-line">WhatsApp: <b id="wa"></b></span>
-    <span class="r"><a href="about.html">About</a><a href="refund.html">Refunds</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></span>
+    <span class="r"><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></span>
   </div>
 </footer>
 <div class="toasts" id="toasts" aria-live="polite"></div>
