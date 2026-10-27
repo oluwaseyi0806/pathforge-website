@@ -125,7 +125,8 @@
       .then(function (r) {
         wait.remove();
         if (r.s === 200 && r.b.answer) {
-          bubble("bot", r.b.answer);
+          var tag = document.createElement("span"); tag.className = "ask-tag"; tag.textContent = "AI answer";
+          bubble("bot", r.b.answer, tag);
           history.push({ role: "user", text: question }, { role: "assistant", text: r.b.answer });
           history = history.slice(-6);
         } else if (r.s === 429 || r.s === 400) {

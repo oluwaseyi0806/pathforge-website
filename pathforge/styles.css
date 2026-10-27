@@ -295,3 +295,4 @@ input[type="text"]:focus, input[type="email"]:focus, select:focus { outline: non
   .ask-fab.on { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .ask-panel, .ask-fab { transition: none; } .ask-msg.typing p { animation: none; } }
+.ask-tag { display: inline-block; margin-top: .4rem; font-size: .72rem; letter-spacing: .03em; color: var(--ink-2); text-transform: uppercase; }
