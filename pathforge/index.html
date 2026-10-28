@@ -21,6 +21,7 @@
 </script>
 </head>
 <body>
+<a class="skip" href="#top">Skip to content</a>
 <header class="head" id="head">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="PathForge CAM home">
@@ -33,25 +34,34 @@
       <a class="wide" href="#download">Download</a>
       <a class="wide" href="#faq">FAQ</a>
       <a class="btn sm" href="#download">Download free</a>
-      <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="drawer">Menu</button>
+      <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
     </nav>
   </div>
 </header>
 <div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
-<nav class="drawer" id="drawer" aria-label="Menu" hidden>
-  <button class="drawer-close" id="drawer-close" type="button">Close</button>
-  <a href="#how">How it works</a>
-  <a href="#check">Safety check</a>
-  <a href="#demo" data-needs-demo hidden>See it work</a>
-  <a href="#download">Download</a>
-  <a href="#updates">Update emails</a>
-  <a href="#testpack">Free test pack</a>
-  <a href="#faq">FAQ</a>
-  <a href="about.html">About</a>
-  <a class="btn" href="#download">Download free</a>
-</nav>
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="drawer-top">
+    <span class="drawer-title" aria-hidden="true">Menu</span>
+    <button class="drawer-close" id="drawer-close" type="button" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav aria-label="Menu links">
+    <a href="#how">How it works</a>
+    <a href="#check">Safety check</a>
+    <a href="#demo" data-needs-demo hidden>See it work</a>
+    <a href="#download">Download</a>
+    <a href="#updates">Update emails</a>
+    <a href="#testpack">Free test pack</a>
+    <a href="#faq">FAQ</a>
+    <a href="about.html">About</a>
+    <a class="btn" href="#download">Download free</a>
+  </nav>
+</div>
 
-<main id="top">
+<main id="top" tabindex="-1">
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">
@@ -228,20 +238,21 @@ G0 G43 H01 Z5.</pre>
         <p class="lede">New versions, fixes and tips. A few emails a year. Tell us your machine so we can test with it.</p>
       </div>
       <form class="form js-signup" id="wl" data-source="waitlist" novalidate>
+        <p class="small muted req-note"><span class="req" aria-hidden="true">*</span> Required</p>
         <div class="two">
-          <div class="f"><label for="wl-name">Your name</label><input id="wl-name" name="name" required type="text" autocomplete="name" maxlength="120"></div>
-          <div class="f"><label for="wl-email">Email</label><input id="wl-email" name="email" required type="email" autocomplete="email" maxlength="200"></div>
+          <div class="f"><label for="wl-name">Your name <span class="req" aria-hidden="true">*</span></label><input id="wl-name" name="name" required type="text" autocomplete="name" maxlength="120"></div>
+          <div class="f"><label for="wl-email">Email <span class="req" aria-hidden="true">*</span></label><input id="wl-email" name="email" required type="email" autocomplete="email" maxlength="200"></div>
         </div>
         <div class="two">
-          <div class="f"><label for="wl-country">Country</label><input id="wl-country" name="country" type="text" autocomplete="country-name" maxlength="80"></div>
+          <div class="f"><label for="wl-country">Country (optional)</label><input id="wl-country" name="country" type="text" autocomplete="country-name" maxlength="80"></div>
           <div class="f"><label for="wl-machine">Your machine (optional)</label><input id="wl-machine" name="machine" type="text" maxlength="120" placeholder="For example: GRBL router, Haas VF-2"></div>
         </div>
-        <label class="consent" for="wl-ok"><input id="wl-ok" name="consent" type="checkbox" required> <span>I agree that PathForge may contact me about PathForge CAM. Read the <a href="privacy.html">privacy notice</a>.</span></label>
+        <label class="consent" for="wl-ok"><input id="wl-ok" name="consent" type="checkbox" required> <span>I agree that PathForge may contact me about PathForge CAM. Read the <a href="privacy.html">privacy notice</a>. <span class="req" aria-hidden="true">*</span></span></label>
         <div class="hp" aria-hidden="true"><label for="wl-company">Company</label><input id="wl-company" name="company" type="text" tabindex="-1" autocomplete="off"></div>
         <div class="turnstile-slot"></div>
         <div><button class="btn" type="submit" id="wl-go">Send me updates</button></div>
         <p class="notice" id="wl-msg" role="status" hidden></p>
-              </form>
+      </form>
     </div>
   </section>
 
@@ -252,11 +263,12 @@ G0 G43 H01 Z5.</pre>
         <p class="lede">13 test parts that catch common CAM mistakes: steps, pockets, overhangs, thin ribs, curved surfaces and a 100,000-triangle file. Each one comes with the exact result PathForge gets, so you can compare any CAM program.</p>
       </div>
       <form class="form js-signup" id="tp" data-source="testpack" novalidate>
+        <p class="small muted req-note"><span class="req" aria-hidden="true">*</span> Required</p>
         <div class="two">
-          <div class="f"><label for="tp-name">Your name</label><input id="tp-name" name="name" type="text" autocomplete="name" maxlength="120" required></div>
-          <div class="f"><label for="tp-email">Email</label><input id="tp-email" name="email" type="email" autocomplete="email" maxlength="200" required></div>
+          <div class="f"><label for="tp-name">Your name <span class="req" aria-hidden="true">*</span></label><input id="tp-name" name="name" type="text" autocomplete="name" maxlength="120" required></div>
+          <div class="f"><label for="tp-email">Email <span class="req" aria-hidden="true">*</span></label><input id="tp-email" name="email" type="email" autocomplete="email" maxlength="200" required></div>
         </div>
-        <label class="consent" for="tp-ok"><input id="tp-ok" name="consent" type="checkbox" required> <span>Send me the test pack and news about PathForge CAM. Read the <a href="privacy.html">privacy notice</a>.</span></label>
+        <label class="consent" for="tp-ok"><input id="tp-ok" name="consent" type="checkbox" required> <span>Send me the test pack and news about PathForge CAM. Read the <a href="privacy.html">privacy notice</a>. <span class="req" aria-hidden="true">*</span></span></label>
         <div class="hp" aria-hidden="true"><label for="tp-company">Company</label><input id="tp-company" name="company" type="text" tabindex="-1" autocomplete="off"></div>
         <div class="turnstile-slot"></div>
         <div><button class="btn" type="submit">Get the test pack</button></div>

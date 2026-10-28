@@ -18,16 +18,30 @@
 
   /* ---------- phone menu ---------- */
   var drawer = $("drawer"), backdrop = $("drawer-backdrop"), menuBtn = $("menu-btn");
+  // while the menu is open, the rest of the page can't be reached by keyboard or screen reader
+  function setPageInert(on) {
+    Array.prototype.forEach.call(document.body.children, function (el) {
+      if (el === drawer || el === backdrop || el.tagName === "SCRIPT") return;
+      if (on) el.setAttribute("inert", ""); else el.removeAttribute("inert");
+    });
+  }
+  function focusable() {                                     // only links and buttons that can be seen
+    return Array.prototype.filter.call(drawer.querySelectorAll("button, a[href]"), function (el) {
+      return !el.closest("[hidden]") && el.getClientRects().length > 0;
+    });
+  }
   function openMenu() {
     drawer.hidden = false; backdrop.hidden = false;
     requestAnimationFrame(function () { drawer.classList.add("open"); backdrop.classList.add("open"); });
     menuBtn.setAttribute("aria-expanded", "true");
-    var first = drawer.querySelector("button, a"); if (first) first.focus();
+    setPageInert(true);
+    var first = focusable()[0]; if (first) first.focus();
     document.addEventListener("keydown", onKey);
   }
   function closeMenu(returnFocus) {
     drawer.classList.remove("open"); backdrop.classList.remove("open");
     menuBtn.setAttribute("aria-expanded", "false");
+    setPageInert(false);
     document.removeEventListener("keydown", onKey);
     setTimeout(function () { drawer.hidden = true; backdrop.hidden = true; }, 230);
     if (returnFocus) menuBtn.focus();
@@ -35,7 +49,8 @@
   function onKey(e) {
     if (e.key === "Escape") closeMenu(true);
     if (e.key === "Tab") {                                   // keep keyboard focus inside the menu
-      var items = drawer.querySelectorAll("button, a:not([hidden])");
+      var items = focusable();
+      if (!items.length) return;
       var first = items[0], last = items[items.length - 1];
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
@@ -46,6 +61,28 @@
     $("drawer-close").addEventListener("click", function () { closeMenu(true); });
     backdrop.addEventListener("click", function () { closeMenu(true); });
     drawer.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", function () { closeMenu(false); }); });
+  }
+
+  /* ---------- highlight the current section in the header (home page) ---------- */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav a.wide[href^="#"], .drawer a[href^="#"]:not(.btn)'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll("main section[id]"));
+  if (navLinks.length && sections.length) {
+    var ticking = false;
+    var mark = function () {
+      ticking = false;
+      var line = (head ? head.offsetHeight : 0) + window.innerHeight * 0.3;
+      var current = "";
+      sections.forEach(function (s) { if (!s.hidden && s.getBoundingClientRect().top <= line) current = s.id; });
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) current = sections[sections.length - 1].id;
+      navLinks.forEach(function (a) {
+        var on = a.getAttribute("href") === "#" + current;
+        a.classList.toggle("is-current", on);
+        if (on) a.setAttribute("aria-current", "location"); else a.removeAttribute("aria-current");
+      });
+    };
+    window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(mark); } }, { passive: true });
+    window.addEventListener("resize", mark);
+    mark();
   }
 
   /* ---------- WhatsApp number in the footer ---------- */
@@ -172,9 +209,29 @@
     var dl = form.querySelector(".download");
 
     function show(text, isError) {
+      msg.setAttribute("role", isError ? "alert" : "status");   // errors are read out straight away
       msg.textContent = text; msg.classList.toggle("err", !!isError); msg.hidden = false;
       if (!isError) toast(text);
     }
+    // an error message under one field, linked to it so screen readers read it with the field
+    function fieldError(el, text) {
+      var id = el.id + "-err", p = document.getElementById(id);
+      if (!p) {
+        if (!text) return;
+        p = document.createElement("p"); p.id = id; p.className = "field-err";
+        (el.type === "checkbox" ? el.closest(".consent") : el).insertAdjacentElement("afterend", p);
+        var by = el.getAttribute("aria-describedby");
+        el.setAttribute("aria-describedby", (by ? by + " " : "") + id);
+      }
+      p.textContent = text || ""; p.hidden = !text;
+      if (text) el.setAttribute("aria-invalid", "true"); else el.removeAttribute("aria-invalid");
+    }
+    ["name", "email", "consent"].forEach(function (n) {
+      var el = form.elements[n]; if (!el) return;
+      el.addEventListener(el.type === "checkbox" ? "change" : "input", function () {
+        if (el.getAttribute("aria-invalid")) fieldError(el, "");
+      });
+    });
     function success(email) {
       form.reset();
       if (form._tsId !== undefined && window.turnstile) window.turnstile.reset(form._tsId);
@@ -216,16 +273,24 @@
         plan: get("plan"), machine: get("machine"), company: get("company"),
         token: form._tsToken || "", elapsed: Date.now() - loadedAt
       };
-      if (!data.name) { show("Enter your name.", true); form.elements.name.focus(); return; }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) { show("Enter a valid email address, like name@example.com.", true); form.elements.email.focus(); return; }
-      if (!form.elements.consent.checked) { show("Tick the box to agree.", true); return; }
+      var problems = [];
+      if (!data.name) problems.push([form.elements.name, "Enter your name."]);
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) problems.push([form.elements.email, "Enter a valid email address, like name@example.com."]);
+      if (!form.elements.consent.checked) problems.push([form.elements.consent, "Tick the box to agree."]);
+      ["name", "email", "consent"].forEach(function (n) { if (form.elements[n]) fieldError(form.elements[n], ""); });
+      if (problems.length) {
+        msg.hidden = true;
+        problems.forEach(function (pr) { fieldError(pr[0], pr[1]); });
+        problems[0][0].focus();                                   // the first field to fix
+        return;
+      }
       if (siteKey && !data.token) {
         if (form._tsFailed) { fallback(data); return; }   // check couldn't load: WhatsApp / direct download instead
         show("Please wait for the security check above the button to finish (a tick appears), then try again.", true); return;
       }
       if (data.company) { success(data.email); return; }        // spam trap filled: a bot. Pretend it worked.
 
-      btn.disabled = true; btn.textContent = "Sending...";
+      btn.disabled = true; btn.textContent = "Sending..."; btn.classList.add("is-loading"); form.setAttribute("aria-busy", "true");
       fetch("/api/signup", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
         .then(function (res) {
           return res.json().catch(function () { return {}; }).then(function (body) { return { status: res.status, body: body }; });
@@ -237,7 +302,7 @@
           if (form._tsId !== undefined && window.turnstile) window.turnstile.reset(form._tsId);
         })
         .catch(function () { fallback(data); })
-        .finally(function () { btn.disabled = false; btn.textContent = btnText; });
+        .finally(function () { btn.disabled = false; btn.textContent = btnText; btn.classList.remove("is-loading"); form.removeAttribute("aria-busy"); });
     });
   });
 })();
