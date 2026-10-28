@@ -65,13 +65,14 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">
+        <p class="eyebrow">CAM for 3-axis mills and routers</p>
         <h1>Cut it on screen first.</h1>
         <p class="lede">PathForge CAM turns your STL into G-code for a 3-axis mill or router. Then it cuts that G-code on a virtual block before you press Cycle Start. Gouges, rapid crashes and overloads show up here, not on your spindle.</p>
         <div class="ctas">
           <a class="btn" href="#download">Download free</a>
           <a class="btn line" href="#how">See how it works</a>
         </div>
-        <p class="small muted">Free beta until 31 January 2027. Windows 10 or 11. Runs offline.</p>
+        <ul class="chips" aria-label="At a glance"><li>Free beta until 31 January 2027</li><li>Windows 10 or 11</li><li>Runs offline</li></ul>
       </div>
       <figure class="sim">
         <canvas id="sim" width="880" height="605" role="img" aria-label="Live simulation: a flat end mill rough-cuts a block of aluminium in layers, then finishes a dome, a raised boss with a round pocket, and the floor."></canvas>
@@ -97,6 +98,7 @@
   <section id="demo" hidden>
     <div class="wrap">
       <div class="sec-head">
+        <p class="eyebrow">Screenshots</p>
         <h2>See it work</h2>
         <p class="lede">The real program: import, generate, check, save.</p>
       </div>
@@ -108,6 +110,7 @@
   <section id="how">
     <div class="wrap">
       <div class="sec-head">
+        <p class="eyebrow">Workflow</p>
         <h2>From STL to the machine in four steps</h2>
         <p class="lede">Everything runs on your own computer. Nothing is uploaded.</p>
       </div>
@@ -124,6 +127,7 @@
     <div class="wrap split">
       <div>
         <div class="sec-head">
+          <p class="eyebrow">Safety check</p>
           <h2>The check reads the finished <span class="nowrap">G-code</span></h2>
           <p class="lede">It replays the exact file your controller will run, on a block cut into 0.1 mm squares, and stops four kinds of mistake.</p>
         </div>
@@ -135,7 +139,7 @@
         </ul>
       </div>
       <div class="report" aria-label="Example safety report from PathForge CAM">
-        <div class="bar">PASSED - safe to run</div>
+        <div class="bar"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>PASSED - safe to run</div>
         <table>
           <tbody>
             <tr><td>Part</td><td>Stepped block, 36 × 26 × 12 mm</td></tr>
@@ -160,7 +164,7 @@ G0 G43 H01 Z5.</pre>
   <section id="features">
     <div class="wrap split">
       <div>
-        <div class="sec-head"><h2>Strategies</h2></div>
+        <div class="sec-head"><p class="eyebrow">Toolpaths</p><h2>Strategies</h2></div>
         <div class="scroll"><table class="spec"><tbody>
           <tr><th scope="row">Full Job</th><td>Rough, finish the walls exactly, then finish tops and floors. The best result.</td></tr>
           <tr><th scope="row">Rough Clear</th><td>Clears the stock around the part in even rings and leaves a thin skin.</td></tr>
@@ -169,7 +173,7 @@ G0 G43 H01 Z5.</pre>
         </tbody></table></div>
       </div>
       <div>
-        <div class="sec-head"><h2>Machines</h2></div>
+        <div class="sec-head"><p class="eyebrow">Machine controls</p><h2>Machines</h2></div>
         <div class="scroll"><table class="spec"><tbody>
           <tr><th scope="row">Tormach 770</th><td>PathPilot</td></tr>
           <tr><th scope="row">Haas VF-2</th><td>NGC control</td></tr>
@@ -183,7 +187,7 @@ G0 G43 H01 Z5.</pre>
 
   <section id="limits">
     <div class="wrap">
-      <div class="sec-head"><h2>What it doesn't do yet</h2><p class="lede">So you know before you cut.</p></div>
+      <div class="sec-head"><p class="eyebrow">Limits</p><h2>What it doesn't do yet</h2><p class="lede">So you know before you cut.</p></div>
       <ul class="limits">
         <li><h3>3-axis only</h3><p class="muted">No 4th or 5th axis machining. You can tilt the part before cutting.</p></li>
         <li><h3>Flat end mills only</h3><p class="muted">Ball-nose tools are planned. A finer finish stepover gives smoother curves.</p></li>
@@ -195,7 +199,7 @@ G0 G43 H01 Z5.</pre>
 
   <section id="download">
     <div class="wrap">
-      <div class="sec-head"><h2>Free beta until 31 January 2027</h2><p class="lede">The full program, every strategy and every machine. Use it to learn and for real jobs. No account and no card. After the beta, paid licences start.</p></div>
+      <div class="sec-head"><p class="eyebrow">Download</p><h2>Free beta until 31 January 2027</h2><p class="lede">The full program, every strategy and every machine. Use it to learn and for real jobs. No account and no card. After the beta, paid licences start.</p></div>
       <div class="dl">
         <div class="dl-main">
           <p class="dl-ready" hidden><a class="btn" id="dl-btn" href="#" rel="noopener">Download for Windows</a></p>
@@ -234,6 +238,7 @@ G0 G43 H01 Z5.</pre>
   <section id="updates">
     <div class="wrap split">
       <div class="sec-head">
+        <p class="eyebrow">Updates</p>
         <h2>Get update emails</h2>
         <p class="lede">New versions, fixes and tips. A few emails a year. Tell us your machine so we can test with it.</p>
       </div>
@@ -259,6 +264,7 @@ G0 G43 H01 Z5.</pre>
   <section id="testpack">
     <div class="wrap split">
       <div class="sec-head">
+        <p class="eyebrow">Test pack</p>
         <h2>Free STL test pack</h2>
         <p class="lede">13 test parts that catch common CAM mistakes: steps, pockets, overhangs, thin ribs, curved surfaces and a 100,000-triangle file. Each one comes with the exact result PathForge gets, so you can compare any CAM program.</p>
       </div>
@@ -280,7 +286,7 @@ G0 G43 H01 Z5.</pre>
 
   <section id="faq">
     <div class="wrap">
-      <div class="sec-head"><h2>Questions</h2></div>
+      <div class="sec-head"><p class="eyebrow">FAQ</p><h2>Questions</h2></div>
       <div class="faq">
         <details><summary>Will it work with my machine?</summary><p>PathForge CAM writes G-code for Tormach PathPilot, Haas, GRBL and Mach3/Mach4 controls. Most 3-axis mills and routers use one of these. If yours isn't listed, tell us when you sign up for update emails.</p></details>
         <details><summary>Do I need the internet to use it?</summary><p>No. It runs on your computer. Your files are never uploaded.</p></details>
