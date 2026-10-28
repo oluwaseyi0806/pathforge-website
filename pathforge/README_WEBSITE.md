@@ -22,3 +22,20 @@ Plain HTML/CSS/JS for Vercel, plus one small server function for sign-ups.
 
 Secret keys (Supabase secret key, Turnstile secret key, later Paystack secret key)
 go ONLY in **Vercel → Settings → Environment Variables** — never in these files.
+
+## Tests
+
+The browser tests live one folder up (outside this website folder, so Vercel never
+publishes them). They check every page at phone, tablet and desktop widths, in light
+and dark mode, plus the menu, the sign-up forms and the Ask chat. Nothing is sent
+anywhere: the sign-up and Ask servers are imitated.
+
+    npm install
+    npx playwright install chromium
+    npm test
+
+## Design
+
+The design (colours, type, components and the desktop home page) is in Figma:
+https://www.figma.com/design/k8FjO5gPLhJkejWKn86VEZ
+The colour names there match the CSS variables at the top of `styles.css`.

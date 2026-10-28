@@ -45,11 +45,12 @@
 
   var panel = document.createElement("div");
   panel.className = "ask-panel"; panel.id = "ask-panel"; panel.hidden = true;
-  panel.setAttribute("role", "dialog"); panel.setAttribute("aria-label", "Ask PathForge");
+  panel.setAttribute("role", "dialog"); panel.setAttribute("aria-labelledby", "ask-title");
   panel.innerHTML =
-    '<div class="ask-head"><div><h2>Ask PathForge</h2><p>Ask anything: the program, CNC, or more</p></div>' +
-    '<button type="button" class="ask-close" aria-label="Close">&times;</button></div>' +
-    '<div class="ask-log" aria-live="polite"></div>' +
+    '<div class="ask-head"><div><h2 id="ask-title">Ask PathForge</h2><p>Ask anything: the program, CNC, or more</p></div>' +
+    '<button type="button" class="ask-close" aria-label="Close chat">&times;</button></div>' +
+    '<div class="ask-log" role="log" aria-live="polite" aria-label="Conversation"></div>' +
+    '<p class="ask-sr" id="ask-status" role="status"></p>' +
     '<div class="ask-chips"></div>' +
     '<form class="ask-form" autocomplete="off"><label class="ask-sr" for="ask-input">Your question</label>' +
     '<input id="ask-input" type="text" maxlength="500" placeholder="Type your question..." enterkeyhint="send">' +
@@ -71,6 +72,16 @@
     log.appendChild(el);
     log.scrollTop = log.scrollHeight;
     return el;
+  }
+  function typing() {
+    var el = document.createElement("div");
+    el.className = "ask-msg bot typing"; el.setAttribute("aria-hidden", "true");
+    el.innerHTML = '<span class="ask-dots"><span></span><span></span><span></span></span>';
+    log.appendChild(el);
+    log.scrollTop = log.scrollHeight;
+    var status = panel.querySelector("#ask-status");
+    status.textContent = "PathForge is typing an answer...";
+    return { remove: function () { el.remove(); status.textContent = ""; } };
   }
   function links(list) {
     var box = document.createElement("p"); box.className = "ask-links";
@@ -118,7 +129,7 @@
     setChips([]);
     if (aiOff) { freeAnswer(question); return; }
     busy = true;
-    var wait = bubble("bot typing", "...");
+    var wait = typing();
     fetch("/api/ask", { method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ question: question, history: history }) })
       .then(function (r) { return r.json().catch(function () { return {}; }).then(function (b) { return { s: r.status, b: b }; }); })

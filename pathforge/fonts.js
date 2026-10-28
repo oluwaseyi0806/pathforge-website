@@ -5,6 +5,6 @@
 (function () {
   var l = document.createElement("link");
   l.rel = "stylesheet";
-  l.href = "https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=Barlow+Semi+Condensed:wght@600;700;800&display=optional";
+  l.href = "https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=Barlow+Semi+Condensed:wght@600;700;800&family=IBM+Plex+Mono:wght@500&display=optional";
   document.head.appendChild(l);
 })();

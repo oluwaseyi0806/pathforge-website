@@ -1,0 +1,12 @@
+{
+  "name": "pathforge-website-tests",
+  "private": true,
+  "description": "Browser tests for the PathForge website (the site itself is in pathforge/ and needs no build).",
+  "scripts": {
+    "test": "node tests/site.test.js"
+  },
+  "devDependencies": {
+    "axe-core": "4.10.2",
+    "playwright": "1.63.0"
+  }
+}
