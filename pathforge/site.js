@@ -121,6 +121,22 @@
     });
   }
 
+  /* ---------- hero video: plays muted on a loop; pause button; respects "reduce motion" ---------- */
+  (function () {
+    var v = $("hero-video"), btn = $("vid-toggle");
+    if (!v || !btn) return;
+    var still = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function label() {
+      btn.textContent = v.paused ? "Play video" : "Pause video";
+      btn.setAttribute("aria-pressed", v.paused ? "true" : "false");
+    }
+    btn.hidden = false;
+    btn.addEventListener("click", function () { if (v.paused) v.play(); else v.pause(); });
+    v.addEventListener("play", label); v.addEventListener("pause", label);
+    if (!still) { var p = v.play(); if (p && p.catch) p.catch(function () { label(); }); }
+    label();
+  })();
+
   /* ---------- free download ---------- */
   (function () {
     var ready = !!cfg.downloadReady && /^https:\/\//.test(String(cfg.downloadUrl || ""));

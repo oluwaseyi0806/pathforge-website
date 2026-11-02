@@ -74,15 +74,14 @@
         </div>
         <ul class="chips" aria-label="At a glance"><li>Free beta until 31 January 2027</li><li>Windows 10 or 11</li><li>Runs offline</li></ul>
       </div>
-      <figure class="sim">
-        <canvas id="sim" width="880" height="605" role="img" aria-label="Live simulation: a flat end mill rough-cuts a block of aluminium in layers, then finishes a dome, a raised boss with a round pocket, and the floor."></canvas>
-        <dl class="readout" aria-live="off">
-          <div><dt>Pass</dt><dd id="r-pass">Roughing</dd></div>
-          <div><dt>Height</dt><dd id="r-z">Z 0.0 mm</dd></div>
-          <div><dt>G-code line</dt><dd id="r-line">0</dd></div>
-          <div><dt>Cut into part</dt><dd class="ok" id="r-gouge">0.000 mm</dd></div>
-        </dl>
-        <figcaption class="sim-cap">Live in your browser: a Ø6 mm flat end mill cutting a 60 × 45 × 18 mm block.</figcaption>
+      <figure class="sim hero-video">
+        <video id="hero-video" muted loop playsinline preload="metadata" width="848" height="478"
+               poster="media/hero-poster.webp"
+               aria-label="Video: a Tormach CNC mill cutting a block of aluminium with flood coolant.">
+          <source src="media/hero.mp4" type="video/mp4">
+        </video>
+        <button class="vid-toggle" id="vid-toggle" type="button" aria-pressed="false" hidden>Pause video</button>
+        <figcaption class="sim-cap">Beta testing on a Tormach CNC mill.</figcaption>
       </figure>
     </div>
   </section>
@@ -313,6 +312,5 @@ G0 G43 H01 Z5.</pre>
 <script src="site.js" defer></script>
 <script src="assistant-kb.js" defer></script>
 <script src="assistant.js" defer></script>
-<script src="sim.js" defer></script>
 </body>
 </html>
