@@ -9,6 +9,19 @@
   var wa = String(cfg.whatsappNumber || "").replace(/\D/g, "");
   var $ = function (id) { return document.getElementById(id); };
 
+  document.documentElement.classList.add("js");
+
+  /* ---------- gentle reveal as sections scroll into view ---------- */
+  (function () {
+    var items = document.querySelectorAll(".reveal");
+    if (!items.length) return;
+    if (!("IntersectionObserver" in window)) { items.forEach(function (el) { el.classList.add("is-in"); }); return; }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    items.forEach(function (el) { io.observe(el); });
+  })();
+
   /* ---------- header shadow ---------- */
   var head = $("head");
   if (head) {
@@ -150,7 +163,26 @@
       $("dl-btn").addEventListener("click", function () { if (window.va) window.va("event", { name: "download" }); });
     }
     var hash = String(cfg.downloadSha256 || "").replace(/[^0-9a-fA-F]/g, "").toUpperCase();
-    if (ready && hash.length === 64 && $("dl-hash")) { $("dl-hash").textContent = hash; $("dl-hash-li").hidden = false; }
+    if (ready && hash.length === 64) {
+      document.querySelectorAll(".js-hash").forEach(function (el) { el.textContent = hash; });
+      document.querySelectorAll(".js-hash-wrap").forEach(function (el) { el.hidden = false; });
+      if ($("dl-hash")) { $("dl-hash").textContent = hash; $("dl-hash-li").hidden = false; }
+    }
+    document.querySelectorAll(".js-version").forEach(function (el) { el.textContent = cfg.downloadVersion || el.textContent; });
+    // VirusTotal scan report (paste the link in site-config.js once you have scanned the zip)
+    var vt = String(cfg.virusTotalUrl || "");
+    document.querySelectorAll(".js-vt").forEach(function (a) {
+      if (/^https:\/\/www\.virustotal\.com\//.test(vt)) { a.href = vt; a.hidden = false; } else a.hidden = true;
+    });
+    // copy the SHA-256 code
+    document.querySelectorAll(".js-copy-hash").forEach(function (b) {
+      b.hidden = !(navigator.clipboard && hash.length === 64);
+      b.addEventListener("click", function () {
+        navigator.clipboard.writeText(hash).then(function () {
+          b.textContent = "Copied"; setTimeout(function () { b.textContent = "Copy code"; }, 1600);
+        });
+      });
+    });
   })();
 
   /* ---------- plan buttons choose the plan ---------- */

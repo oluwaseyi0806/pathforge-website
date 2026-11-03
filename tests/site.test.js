@@ -6,7 +6,7 @@ const http = require('http'), fs = require('fs'), path = require('path');
 const { chromium } = require('playwright');
 const ROOT = path.join(__dirname, '..', 'pathforge');
 const SHOTS = process.env.SHOTS || '';   // set SHOTS=folder to save screenshots
-const TYPES = { '.html':'text/html', '.js':'text/javascript', '.css':'text/css', '.svg':'image/svg+xml', '.webp':'image/webp', '.png':'image/png' };
+const TYPES = { '.html':'text/html', '.js':'text/javascript', '.css':'text/css', '.svg':'image/svg+xml', '.webp':'image/webp', '.png':'image/png', '.nc':'text/plain', '.mp4':'video/mp4' };
 let signupStatus = 200, signupBody = { ok: true };
 const srv = http.createServer((req, res) => {
   const u = req.url.split('?')[0];
@@ -30,7 +30,7 @@ const fails = []; const ok = (c, m) => { if (!c) fails.push(m); console.log((c ?
     return p;
   }
   // layout, contrast, touch targets on every page, 3 widths, light + dark
-  for (const scheme of ['light', 'dark']) for (const w of [375, 768, 1280]) for (const pg of ['index', 'about', 'privacy', 'terms', 'refund']) {
+  for (const scheme of ['light', 'dark']) for (const w of [375, 768, 1280]) for (const pg of ['index', 'features', 'docs', 'changelog', 'showcase', 'about', 'privacy', 'terms', 'refund']) {
     const p = await page(w, scheme);
     await p.goto(`http://localhost:8099/${pg}.html`); await p.waitForTimeout(300);
     const sw = await p.evaluate(() => document.documentElement.scrollWidth - innerWidth);
@@ -73,15 +73,15 @@ const fails = []; const ok = (c, m) => { if (!c) fails.push(m); console.log((c ?
     ok(await p.evaluate(() => document.activeElement.className === 'skip' && document.activeElement.getBoundingClientRect().top >= 0), 'skip link shows on first Tab');
     await p.keyboard.press('Enter'); await p.waitForTimeout(200);
     ok(await p.evaluate(() => document.activeElement.id === 'top'), 'skip link moves focus to main');
-    await p.evaluate(() => window.scrollTo({ top: document.getElementById('check').offsetTop - 80, behavior: 'instant' })); await p.waitForTimeout(300);
-    ok(await p.evaluate(() => document.querySelector('.nav a[href="#check"]').getAttribute('aria-current') === 'location'), 'scroll to #check highlights Safety check');
+    await p.evaluate(() => window.scrollTo({ top: document.getElementById('player').offsetTop - 80, behavior: 'instant' })); await p.waitForTimeout(300);
+    ok(await p.evaluate(() => document.querySelector('.nav a[href="#player"]').getAttribute('aria-current') === 'location'), 'scroll to #player highlights Live demo');
     await p.evaluate(() => window.scrollTo({ top: document.getElementById('features').offsetTop - 80, behavior: 'instant' })); await p.waitForTimeout(300);
     ok(await p.evaluate(() => !document.querySelector('.nav a[aria-current]')), 'untracked section: nothing highlighted');
     await p.evaluate(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' })); await p.waitForTimeout(300);
-    ok(await p.evaluate(() => document.querySelector('.nav a[href="#faq"]').getAttribute('aria-current') === 'location'), 'page bottom highlights FAQ');
+    ok(await p.evaluate(() => !document.querySelector('.nav a[aria-current="location"]')), 'page bottom (FAQ, not in the header): nothing highlighted');
     // anchor not hidden under sticky header
-    await p.click('.nav a[href="#how"]'); await p.waitForTimeout(900);
-    ok(await p.evaluate(() => document.querySelector('#how h2').getBoundingClientRect().top >= document.getElementById('head').offsetHeight), 'anchor heading lands below sticky header');
+    await p.click('.nav a[href="#whatsnew"]'); await p.waitForTimeout(1800);
+    ok(await p.evaluate(() => document.querySelector('#whatsnew h2').getBoundingClientRect().top >= document.getElementById('head').offsetHeight), 'anchor heading lands below sticky header');
     await p.context().close();
   }
   // forms

@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Docs | PathForge CAM</title>
+<meta name="description" content="Guides for PathForge CAM: getting started, setting zero, feeds and speeds, strategies, tools, drilling, clamp zones, the G-code player and your first cut.">
+<meta property="og:title" content="Docs | PathForge CAM">
+<meta property="og:description" content="Guides for PathForge CAM: getting started, setting zero, feeds and speeds, strategies, tools, drilling, clamp zones, the G-code player and your first cut.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#12202B">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script src="fonts.js" async></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#top">Skip to content</a>
+<header class="head" id="head">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="PathForge CAM home">
+      <svg viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="24" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 18V8h7a3.5 3.5 0 0 1 0 7H6" fill="none" stroke="var(--signal)" stroke-width="2.4" stroke-linejoin="round"/></svg>
+      PathForge CAM
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a class="wide" href="index.html#whatsnew">What's new</a>
+      <a class="wide" href="index.html#player">Live demo</a>
+      <a class="wide" href="features.html">Features</a>
+      <a class="wide" href="docs.html" aria-current="page">Docs</a>
+      <a class="wide" href="changelog.html">Changelog</a>
+      <a class="btn sm" href="index.html#download">Download free</a>
+      <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+<div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="drawer-top">
+    <span class="drawer-title" aria-hidden="true">Menu</span>
+    <button class="drawer-close" id="drawer-close" type="button" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav aria-label="Menu links">
+    <a href="index.html">Home</a>
+    <a href="index.html#whatsnew">What's new in 4.6</a>
+    <a href="index.html#player">Live G-code demo</a>
+    <a href="features.html">Features</a>
+    <a href="docs.html" aria-current="page">Docs and guides</a>
+    <a href="changelog.html">Changelog</a>
+    <a href="showcase.html">Showcase</a>
+    <a href="index.html#download">Download</a>
+    <a href="index.html#updates">Update emails</a>
+    <a href="index.html#faq">FAQ</a>
+    <a href="about.html">About</a>
+    <a class="btn" href="index.html#download">Download free</a>
+  </nav>
+</div>
+
+<main id="top" tabindex="-1">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs"><a href="index.html">Home</a> / Docs</p>
+      <h1>Docs and guides</h1>
+      <p class="lede">Short, practical guides for PathForge CAM 4.6, from the first STL to the first chip.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrap docs">
+      <nav class="toc" aria-label="On this page">
+        <b>On this page</b>
+        <a href="#start">Getting started</a>
+        <a href="#requirements">System requirements</a>
+        <a href="#verify">Check your download is genuine</a>
+        <a href="#zero">Setting zero on your machine</a>
+        <a href="#feeds">Feeds and speeds with the tool library</a>
+        <a href="#strategies">Choosing a strategy</a>
+        <a href="#two-tools">Ball-nose, bull-nose and a second tool</a>
+        <a href="#drilling">Drilling holes</a>
+        <a href="#clamps">Clamp and vise zones</a>
+        <a href="#player">The G-code player</a>
+        <a href="#first-cut">First cut checklist</a>
+        <a href="#trouble">Troubleshooting</a>
+      </nav>
+      <div class="doc">
+      <article id="start">
+        <h2>Getting started</h2>
+        <ol>
+          <li><b>Download</b> PathForge CAM from the <a href="index.html#download">download section</a> and unzip the folder anywhere, for example in Documents.</li>
+          <li><b>Open</b> <code>PathForgeCAM.exe</code>. No installer and no admin rights are needed. Read the safety notice, tick the box and start.</li>
+          <li><b>Import STL</b> (left panel). If the part arrives upside down or lying on its side, use <b>Flip upside down</b> or <b>Y-up STL &rarr; Z-up</b>.</li>
+          <li><b>Pick your machine</b> (right panel): Tormach, Haas, GRBL or Mach3/Mach4.</li>
+          <li><b>Set up the job</b>: tool, feeds, stock size and <b>where zero is</b>. The easiest way is <b>Tool library / feeds</b>.</li>
+          <li><b>Choose a strategy</b> (Full Job is the best start) and press <b>Generate G-Code</b>.</li>
+          <li><b>Read the check.</b> Save only when it says PASSED. Press <b>Play G-code</b> to watch it first.</li>
+        </ol>
+        <p class="tip ok">Every number on screen is the same number that goes into the G-code. The white dot is X0 Y0 Z0.</p>
+      </article>
+      <article id="requirements">
+        <h2>System requirements</h2>
+        <table><tbody>
+          <tr><th scope="row">Windows</th><td>Windows 10 or 11, 64-bit</td></tr>
+          <tr><th scope="row">Memory</th><td>4 GB, 8 GB for STL files with more than 200,000 triangles</td></tr>
+          <tr><th scope="row">Disk</th><td>About 250 MB unzipped</td></tr>
+          <tr><th scope="row">Screen</th><td>1280 x 800 or bigger</td></tr>
+          <tr><th scope="row">Internet</th><td>Only to download. The program runs offline.</td></tr>
+        </tbody></table>
+        <p class="muted">Mac and Linux are not supported yet.</p>
+      </article>
+      <article id="verify">
+        <h2>Check your download is genuine</h2>
+        <p class="muted">Every release has a SHA-256 code, a fingerprint of the file. If even one byte were changed, the code would be completely different.</p>
+        <ol>
+          <li>Open the folder where the zip was saved, click the address bar, type <code>powershell</code> and press Enter.</li>
+          <li>Run this command:</li>
+        </ol>
+<pre class="code">Get-FileHash .\PathForgeCAM_Windows.zip</pre>
+        <p class="muted js-hash-wrap" hidden>It must print exactly: <code class="hash js-hash"></code> <button class="btn line sm js-copy-hash" type="button" hidden>Copy code</button></p>
+        <p class="muted">Older versions have their own codes on the <a href="changelog.html">changelog</a>. <a class="js-vt" href="#" target="_blank" rel="noopener" hidden>See the VirusTotal scan report.</a></p>
+        <h3>"Windows protected your PC"</h3>
+        <p class="muted">Windows shows this for new programs that are not code-signed yet. Click <b>More info</b>, check the name is <code>PathForgeCAM.exe</code>, then click <b>Run anyway</b>. Only do this for a copy downloaded from this website whose SHA-256 code matches.</p>
+      </article>
+      <article id="zero">
+        <h2>Setting zero on your machine</h2>
+        <p class="muted">The top of every G-code file says exactly where to touch off, for example:</p>
+<pre class="code"><span class="c">(X0 Y0 = FRONT-LEFT CORNER OF STOCK)</span>
+<span class="c">(Z0 = TOP OF STOCK)</span>
+<span class="c">(CUT DEPTHS ARE NEGATIVE Z)</span></pre>
+        <ul>
+          <li><b>Z0 = top of stock</b> (the usual choice): every cut goes to a negative Z. That is correct, not a mistake.</li>
+          <li><b>Z0 = bottom of stock</b>: Z is the height above the bottom of the block (or above the base you left under the part).</li>
+          <li><b>X0 Y0</b> can be the front-left corner, the centre of the stock, or the same zero as the STL file.</li>
+          <li>Stand in front of the machine: X goes right, Y goes away from you, Z goes up. The app's 3D view starts from this operator's view.</li>
+        </ul>
+      </article>
+      <article id="feeds">
+        <h2>Feeds and speeds with the tool library</h2>
+        <ol>
+          <li>Click <b>Tool library / feeds</b>. Add your tools once: number, shape, diameter, corner radius, flutes and flute length.</li>
+          <li>Pick your material. The window shows starting values for the selected tool.</li>
+          <li>Click <b>Use as TOOL 1</b>. The job settings are filled in for you.</li>
+        </ol>
+        <p class="muted">How the numbers are worked out: spindle speed from the cutting speed for the material, feed = RPM x flutes x chip load, stepdown as a share of the tool diameter. Everything is capped to your machine's top speed and feed, with a note when it is lowered.</p>
+        <p class="tip">These are safe <b>starting</b> values for carbide tools. Machines, holders and setups differ: start with the feed override low and adjust by sound and chips.</p>
+      </article>
+      <article id="strategies">
+        <h2>Choosing a strategy</h2>
+        <table><tbody>
+          <tr><th scope="row">Full Job</th><td>Most parts. Roughing, exact waterline walls, then a parallel finish of tops and floors.</td></tr>
+          <tr><th scope="row">2.5D Pocket</th><td>Plates, pockets and steps with flat floors. Faster than Full Job on these.</td></tr>
+          <tr><th scope="row">Rough Clear</th><td>Roughing only, leaving the skin for a later program.</td></tr>
+          <tr><th scope="row">Waterline Z</th><td>Steep walls.</td></tr>
+          <tr><th scope="row">Parallel X / Y</th><td>Curved tops, best with a ball-nose tool.</td></tr>
+        </tbody></table>
+        <p class="muted"><b>Adaptive roughing</b> (More options) uses a light stepover with a deep stepdown, so the tool load stays even.</p>
+      </article>
+      <article id="two-tools">
+        <h2>Ball-nose, bull-nose and a second tool</h2>
+        <ul>
+          <li><b>Tool shape</b>: More options &rarr; Tool &amp; stock. Ball-nose for curved surfaces (use a small finish stepover), bull-nose for strong cutting with a smooth finish on slopes.</li>
+          <li><b>Second tool</b>: in the tool library click <b>Use as 2nd tool</b>, or tick it in More options &rarr; 2nd tool. Tool 1 roughs, tool 2 cuts only where material was left and does all the finishing.</li>
+          <li>Each tool needs its own number, and its tool length offset set on the machine.</li>
+        </ul>
+      </article>
+      <article id="drilling">
+        <h2>Drilling holes</h2>
+        <ol>
+          <li>Add your drills to the tool library (shape: Drill).</li>
+          <li>More options &rarr; Drilling: tick <b>Drill small round holes</b> and pick the material.</li>
+        </ol>
+        <ul>
+          <li>Holes smaller than your end mill are drilled with a drill of the same size (within 0.1 mm). Bigger holes are milled.</li>
+          <li>Shallow holes use G81. Holes deeper than 3 x the diameter use G83 peck drilling. GRBL has no drilling cycles, so every move is written out.</li>
+          <li>Through holes need <b>stock below the part</b>, so the drill can go all the way through into the base and not into your table.</li>
+        </ul>
+      </article>
+      <article id="clamps">
+        <h2>Clamp and vise zones</h2>
+        <p class="muted">More options &rarr; Clamps / keep-out. Add a box for each clamp, measured in G-code numbers: X and Y from X0 Y0, and the height of the top of the clamp above Z0. With Z0 on top of the stock, a clamp 5 mm higher than the stock is +5, and one 3 mm lower is -3.</p>
+        <p class="muted">Toolpaths keep a 0.5 mm air gap, the safe height is raised over the clamps, the preview draws them in red, and the checker reports any move that enters one.</p>
+      </article>
+      <article id="player">
+        <h2>The G-code player</h2>
+        <ul>
+          <li>After generating, press <b>Play G-code</b> in the preview, or open any file with <b>G-code player (open file)</b>.</li>
+          <li>Play, pause, step one move at a time, or drag the slider. The current line is highlighted.</li>
+          <li><b>Check against the loaded part</b> runs the full safety check on any file, using the stock and zero settings in the main window.</li>
+          <li>There is also a <a href="index.html#player">player in your browser</a> on the home page.</li>
+        </ul>
+      </article>
+      <article id="first-cut">
+        <h2>First cut checklist</h2>
+        <ol>
+          <li>Only run programs whose preview says <b>PASSED</b>.</li>
+          <li>Check units, tool numbers and tool length offsets match the file header.</li>
+          <li>Touch off X0 Y0 and Z0 exactly where the header says.</li>
+          <li>Clamp the stock and keep clamps out of the cutting area, or mark them as clamp zones.</li>
+          <li>Dry run first: Z raised, or cutting air.</li>
+          <li>First real cut with the feed override low and a hand on the stop button.</li>
+        </ol>
+      </article>
+      <article id="trouble">
+        <h2>Troubleshooting</h2>
+        <table><tbody>
+          <tr><th scope="row">The check says FAILED</th><td>Read the first error: it names the line. Common fixes: a smaller stepdown, a smaller tool, more stock margin, or moving a clamp zone.</td></tr>
+          <tr><th scope="row">The part is upside down</th><td>Use Flip upside down, or Y-up STL &rarr; Z-up.</td></tr>
+          <tr><th scope="row">"The beta has ended"</th><td>The free beta ends on 31 January 2027. Download the newest version.</td></tr>
+          <tr><th scope="row">Something crashed</th><td>Send <code>%APPDATA%\PathForge\error_log.txt</code> to us on WhatsApp with a short description.</td></tr>
+        </tbody></table>
+      </article>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html"><svg viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="24" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 18V8h7a3.5 3.5 0 0 1 0 7H6" fill="none" stroke="var(--signal)" stroke-width="2.4" stroke-linejoin="round"/></svg> PathForge CAM</a>
+        <p>CAM for 3-axis mills and routers. Every program is cut on a virtual block before it reaches your machine.</p>
+        <p id="wa-line">WhatsApp: <b id="wa"></b></p>
+      </div>
+      <div><h2>Product</h2><ul><li><a href="index.html#whatsnew">What's new</a></li><li><a href="features.html">Features</a></li><li><a href="index.html#player">Live demo</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="index.html#download">Download</a></li></ul></div>
+      <div><h2>Learn</h2><ul><li><a href="docs.html" aria-current="page">Docs and guides</a></li><li><a href="docs.html#start">Getting started</a></li><li><a href="docs.html#first-cut">First cut checklist</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="index.html#testpack">Free STL test pack</a></li></ul></div>
+      <div><h2>Company</h2><ul><li><a href="about.html">About</a></li><li><a href="showcase.html">Showcase</a></li><li><a href="privacy.html">Privacy</a></li><li><a href="terms.html">Terms</a></li><li><a href="refund.html">Refund policy</a></li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 PathForge CAM</span>
+      <span>Free beta until 31 January 2027</span>
+    </div>
+  </div>
+</footer>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<script src="site-config.js" defer></script>
+<script src="site.js" defer></script>
+<script src="assistant-kb.js" defer></script>
+<script src="assistant.js" defer></script>
+</body>
+</html>

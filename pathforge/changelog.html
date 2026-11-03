@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Changelog | PathForge CAM</title>
+<meta name="description" content="Every PathForge CAM release: what changed, when, and the SHA-256 code to check each download.">
+<meta property="og:title" content="Changelog | PathForge CAM">
+<meta property="og:description" content="Every PathForge CAM release: what changed, when, and the SHA-256 code to check each download.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#12202B">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script src="fonts.js" async></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#top">Skip to content</a>
+<header class="head" id="head">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="PathForge CAM home">
+      <svg viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="24" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 18V8h7a3.5 3.5 0 0 1 0 7H6" fill="none" stroke="var(--signal)" stroke-width="2.4" stroke-linejoin="round"/></svg>
+      PathForge CAM
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a class="wide" href="index.html#whatsnew">What's new</a>
+      <a class="wide" href="index.html#player">Live demo</a>
+      <a class="wide" href="features.html">Features</a>
+      <a class="wide" href="docs.html">Docs</a>
+      <a class="wide" href="changelog.html" aria-current="page">Changelog</a>
+      <a class="btn sm" href="index.html#download">Download free</a>
+      <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+<div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="drawer-top">
+    <span class="drawer-title" aria-hidden="true">Menu</span>
+    <button class="drawer-close" id="drawer-close" type="button" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav aria-label="Menu links">
+    <a href="index.html">Home</a>
+    <a href="index.html#whatsnew">What's new in 4.6</a>
+    <a href="index.html#player">Live G-code demo</a>
+    <a href="features.html">Features</a>
+    <a href="docs.html">Docs and guides</a>
+    <a href="changelog.html" aria-current="page">Changelog</a>
+    <a href="showcase.html">Showcase</a>
+    <a href="index.html#download">Download</a>
+    <a href="index.html#updates">Update emails</a>
+    <a href="index.html#faq">FAQ</a>
+    <a href="about.html">About</a>
+    <a class="btn" href="index.html#download">Download free</a>
+  </nav>
+</div>
+
+<main id="top" tabindex="-1">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs"><a href="index.html">Home</a> / Changelog</p>
+      <h1>Changelog</h1>
+      <p class="lede">What changed in every version, with the SHA-256 code of each download so you can check your copy.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <ol class="timeline" reversed>
+      <li class="reveal">
+        <div class="ver"><b>4.6</b><span>November 2026</span><span class="latest">LATEST</span></div>
+        <div><h3>Nine upgrades</h3><ul><li>Tool library with feeds and speeds by material</li><li>Ball-nose and bull-nose end mills, with exact maths</li><li>Two tools: rest machining with a smaller second tool</li><li>Drilling with G81 / G83 and the new 2.5D Pocket strategy</li><li>Clamp and vise keep-out zones</li><li>G-code player that can check any G-code file</li><li>Arcs (G2/G3) for smaller files and smoother motion</li><li>Adaptive roughing</li><li>Stock below the part</li><li>Fix: roughing could return across a corner when ramping into an open path; the checker always caught it, now fixed at the source</li><li>Fix: roughing no longer leaves a thin skin of stock against clamp zones (a later pass had to cut it in one go); clamps now get a clean 0.5 mm air gap</li><li>61 automatic checks before every release</li></ul><p class="hash js-hash-wrap" hidden>SHA-256 <span class="js-hash"></span></p></div>
+      </li>
+      <li class="reveal">
+        <div class="ver"><b>4.5</b><span>1 November 2026</span></div>
+        <div><h3>From a real Tormach test</h3><ul><li>The app and preview now show the same coordinates as the G-code, with the stock box, an X0 Y0 Z0 marker and X+/Y+/Z+ arrows</li><li>Operator's camera view: X right, Y away from you, Z up</li><li>Header notes: cut depths are negative Z, cuts top down layer by layer</li><li>One-click Flip upside down, Y-up STL to Z-up and Reset orientation</li><li>New automatic tests: no flipped or mirrored axes, every cut at Z0 or below, top-down layers</li></ul><p class="hash">SHA-256 1737832DDA6A5DCDCF50038112F36E24FC4806825FC5EB1D1CD3FC4A3940B822</p></div>
+      </li>
+      <li class="reveal">
+        <div class="ver"><b>4.4.1</b><span>27 October 2026</span></div>
+        <div><h3>Free beta with an end date</h3><ul><li>The free beta runs until 31 January 2027, with a reminder in the last 14 days</li></ul><p class="hash">SHA-256 4D8C08006F7A0C55F6C59020CE2C93162DE0F374DB57C510920BB1F30F6D363D</p></div>
+      </li>
+      <li class="reveal">
+        <div class="ver"><b>4.4</b><span>27 October 2026</span></div>
+        <div><h3>First public beta</h3><ul><li>Safety agreement on first start and a safety checklist</li><li>Safety stamp in every G-code file header: check PASSED or FAILED</li><li>Warnings for risky settings</li><li>Crash log saved on your computer only</li><li>Windows download with a self-test of the finished program</li></ul><p class="hash">SHA-256 9A16031337607041E04B15C8EA51415FE702361A2CADA261198B7DA56346B380</p></div>
+      </li>
+      </ol>
+      <p class="muted mt-15">To update, download the new zip and replace your old folder. Your tool library and settings are kept. <a href="index.html#updates">Get update emails</a></p>
+    </div>
+  </section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html"><svg viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="24" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 18V8h7a3.5 3.5 0 0 1 0 7H6" fill="none" stroke="var(--signal)" stroke-width="2.4" stroke-linejoin="round"/></svg> PathForge CAM</a>
+        <p>CAM for 3-axis mills and routers. Every program is cut on a virtual block before it reaches your machine.</p>
+        <p id="wa-line">WhatsApp: <b id="wa"></b></p>
+      </div>
+      <div><h2>Product</h2><ul><li><a href="index.html#whatsnew">What's new</a></li><li><a href="features.html">Features</a></li><li><a href="index.html#player">Live demo</a></li><li><a href="changelog.html" aria-current="page">Changelog</a></li><li><a href="index.html#download">Download</a></li></ul></div>
+      <div><h2>Learn</h2><ul><li><a href="docs.html">Docs and guides</a></li><li><a href="docs.html#start">Getting started</a></li><li><a href="docs.html#first-cut">First cut checklist</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="index.html#testpack">Free STL test pack</a></li></ul></div>
+      <div><h2>Company</h2><ul><li><a href="about.html">About</a></li><li><a href="showcase.html">Showcase</a></li><li><a href="privacy.html">Privacy</a></li><li><a href="terms.html">Terms</a></li><li><a href="refund.html">Refund policy</a></li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 PathForge CAM</span>
+      <span>Free beta until 31 January 2027</span>
+    </div>
+  </div>
+</footer>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<script src="site-config.js" defer></script>
+<script src="site.js" defer></script>
+<script src="assistant-kb.js" defer></script>
+<script src="assistant.js" defer></script>
+</body>
+</html>
