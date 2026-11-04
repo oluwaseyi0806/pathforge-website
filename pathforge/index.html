@@ -17,7 +17,7 @@
 <script src="fonts.js" async></script>
 <link rel="stylesheet" href="styles.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PathForge CAM","applicationCategory":"DesignApplication","operatingSystem":"Windows 10, Windows 11","description":"CAM software that turns STL files into G-code for 3-axis CNC mills and routers and checks every move on a virtual block before cutting.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"softwareVersion":"4.5"}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PathForge CAM","applicationCategory":"DesignApplication","operatingSystem":"Windows 10, Windows 11","description":"CAM software that turns STL files into G-code for 3-axis CNC mills and routers and checks every move on a virtual block before cutting.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"softwareVersion":"4.6"}
 </script>
 </head>
 <body>
@@ -29,10 +29,11 @@
       PathForge CAM
     </a>
     <nav class="nav" aria-label="Main">
-      <a class="wide" href="#how">How it works</a>
-      <a class="wide" href="#check">Safety check</a>
-      <a class="wide" href="#download">Download</a>
-      <a class="wide" href="#faq">FAQ</a>
+      <a class="wide" href="#whatsnew">What's new</a>
+      <a class="wide" href="#player">Live demo</a>
+      <a class="wide" href="features.html">Features</a>
+      <a class="wide" href="docs.html">Docs</a>
+      <a class="wide" href="changelog.html">Changelog</a>
       <a class="btn sm" href="#download">Download free</a>
       <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Menu">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
@@ -49,12 +50,15 @@
     </button>
   </div>
   <nav aria-label="Menu links">
-    <a href="#how">How it works</a>
-    <a href="#check">Safety check</a>
-    <a href="#demo" data-needs-demo hidden>See it work</a>
+    <a href="#top" aria-current="page">Home</a>
+    <a href="#whatsnew">What's new in 4.6</a>
+    <a href="#player">Live G-code demo</a>
+    <a href="features.html">Features</a>
+    <a href="docs.html">Docs and guides</a>
+    <a href="changelog.html">Changelog</a>
+    <a href="showcase.html">Showcase</a>
     <a href="#download">Download</a>
     <a href="#updates">Update emails</a>
-    <a href="#testpack">Free test pack</a>
     <a href="#faq">FAQ</a>
     <a href="about.html">About</a>
     <a class="btn" href="#download">Download free</a>
@@ -65,12 +69,13 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">
+        <a class="pill-new" href="#whatsnew"><b>NEW</b><span>Version 4.6: 9 big upgrades</span></a>
         <p class="eyebrow">CAM for 3-axis mills and routers</p>
         <h1>Cut it on screen first.</h1>
         <p class="lede">PathForge CAM turns your STL into G-code for a 3-axis mill or router. Then it cuts that G-code on a virtual block before you press Cycle Start. Gouges, rapid crashes and overloads show up here, not on your spindle.</p>
         <div class="ctas">
           <a class="btn" href="#download">Download free</a>
-          <a class="btn line" href="#how">See how it works</a>
+          <a class="btn line" href="#player">Watch it cut</a>
         </div>
         <ul class="chips" aria-label="At a glance"><li>Free beta until 31 January 2027</li><li>Windows 10 or 11</li><li>Runs offline</li></ul>
       </div>
@@ -88,11 +93,78 @@
 
   <div class="proof" aria-label="Test results">
     <div class="wrap">
-      <div class="fig"><b>100</b><span class="muted">test jobs on every release: 5 shapes, 5 strategies, 4 machine controls</span></div>
+      <div class="fig"><b>61</b><span class="muted">automatic checks before every release, including programs with planted mistakes the checker must catch</span></div>
       <div class="fig"><b>0.002 mm</b><span class="muted">deepest cut into the part across all test parts. The limit is 0.005 mm</span></div>
       <div class="fig"><b>0</b><span class="muted">rapid crashes or overloads allowed. A program that fails can't be saved by mistake</span></div>
     </div>
   </div>
+
+  <section id="whatsnew">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">New in version 4.6</p>
+        <h2>Nine upgrades, all checked on the virtual block</h2>
+        <p class="lede">Each new feature was tested both ways: good programs pass, and programs with planted mistakes are caught.</p>
+      </div>
+      <ul class="newgrid" role="list">
+        <li class="newcard reveal"><span class="n">01</span><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="6" height="22" rx="1"/><rect x="13" y="5" width="6" height="22" rx="1"/><path d="M23 6l4 1-4 20-3-1z"/></svg><h3>Tool library + feeds and speeds</h3><p class="muted">Save your end mills and drills. Pick a material and get starting RPM, feed and stepdown, kept inside your machine's limits.</p></li>
+        <li class="newcard reveal"><span class="n">02</span><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4v14a6 6 0 0 0 12 0V4"/><path d="M10 10h12"/></svg><h3>Ball-nose and bull-nose tools</h3><p class="muted">Exact maths for round tools, tested against brute force. Smooth curved surfaces, and the checker models the real tool shape.</p></li>
+        <li class="newcard reveal"><span class="n">03</span><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="12" width="12" height="14"/><rect x="18" y="18" width="10" height="8"/><path d="M10 4v6M23 10v6"/></svg><h3>Two tools: rest machining</h3><p class="muted">A big tool roughs. A smaller one cuts only where material was left, then does all the finishing. Tool change written for you.</p></li>
+        <li class="newcard reveal"><span class="n">04</span><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3h6v14l-3 6-3-6z"/><path d="M13 8l6 3M13 13l6 3"/><path d="M6 27h20"/></svg><h3>Drilling + 2.5D Pocket</h3><p class="muted">Small round holes are found and drilled with the matching drill: G81, or G83 peck drilling for deep holes. Flat floors cut exactly.</p></li>
+        <li class="newcard reveal"><span class="n">05</span><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h24"/><path d="M8 22V10h8v6h8v6"/><path d="M6 6l20 20" stroke-dasharray="3 2"/></svg><h3>Clamp and vise zones</h3><p class="muted">Tell PathForge where your clamps are. Toolpaths keep clear, safe height rises over them, and the checker reports any move that enters one.</p></li>
+        <li class="newcard reveal"><span class="n">06</span><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="24" height="18" rx="2"/><path d="M14 10l6 4-6 4z"/><path d="M8 27h16"/></svg><h3>G-code player</h3><p class="muted">Watch any program cut, line by line, as material disappears. Check any G-code file against your part.</p></li>
+        <li class="newcard reveal"><span class="n">07</span><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 25C5 13 13 6 25 6"/><circle cx="25" cy="6" r="2"/><circle cx="5" cy="25" r="2"/></svg><h3>Arcs (G2/G3)</h3><p class="muted">Curves are written as real arcs: smaller files and smoother motion, within 0.002 mm of the exact path.</p></li>
+        <li class="newcard reveal"><span class="n">08</span><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16c3-6 5-6 8 0s5 6 8 0 5-6 8 0"/><path d="M4 24h24"/></svg><h3>Adaptive roughing</h3><p class="muted">Light sideways cuts with a deep stepdown, so the tool load stays even and roughing is faster on real machines.</p></li>
+        <li class="newcard reveal"><span class="n">09</span><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20h22v6H5z"/><path d="M9 20v-9h14v9" stroke-dasharray="3 2"/></svg><h3>Stock below the part</h3><p class="muted">Leave a base under the part that is never cut, to hold it, and to drill through holes all the way.</p></li>
+      </ul>
+      <div class="newnote reveal">
+        <a class="btn" href="#download">Download <span class="js-version">4.6 Free Beta</span></a>
+        <a href="features.html">See every feature</a>
+        <a href="changelog.html">Read the full changelog</a>
+      </div>
+    </div>
+  </section>
+  <section id="player">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Live demo</p>
+        <h2>Watch a real PathForge program cut</h2>
+        <p class="lede">This is the exact G-code PathForge CAM 4.6 wrote for a small aluminium bracket: two end mills and a drill, on a Tormach. It plays right here in your browser.</p>
+      </div>
+      <div class="gp reveal" id="gplayer" data-src="media/demo-bracket.nc" data-name="demo-bracket.nc - Tormach 770, 2.5D Pocket">
+        <canvas width="900" height="560" role="img" aria-label="Top view of the block being cut by the G-code program. Darker areas are deeper."></canvas>
+        <div class="gp-side">
+          <p class="gp-file-name" data-out="name">Loading the demo program...</p>
+          <dl class="gp-read">
+            <div><dt>Tool</dt><dd data-out="tool">-</dd></div>
+            <div><dt>Progress</dt><dd data-out="time">0 %</dd></div>
+            <div class="wide2"><dt>Position (G-code numbers)</dt><dd data-out="pos">-</dd></div>
+            <div class="wide2"><dt>Line</dt><dd data-out="line">-</dd></div>
+          </dl>
+          <pre class="gp-lines" aria-label="G-code lines around the current move"></pre>
+        </div>
+        <div class="gp-bar">
+          <button type="button" data-act="start" aria-label="Back to the start">|&lt;</button>
+          <button type="button" data-act="back" aria-label="One move back">&lt;</button>
+          <button type="button" data-act="play" aria-pressed="false">Play</button>
+          <button type="button" data-act="fwd" aria-label="One move forward">&gt;</button>
+          <button type="button" data-act="end" aria-label="Jump to the end">&gt;|</button>
+          <input class="gp-seek" type="range" min="0" max="1" value="0" step="1" aria-label="Position in the program">
+          <label>Speed <select class="gp-speed"><option value="0">Slow</option><option value="1">Normal</option><option value="2" selected>Fast</option><option value="3">Faster</option><option value="4">Fastest</option></select></label>
+          <span class="gp-filebtn">Open your own G-code<input class="gp-file" type="file" accept=".nc,.gcode,.ngc,.tap,.txt,.cnc" aria-label="Open your own G-code file"></span>
+        </div>
+        <p class="gp-status" role="status" hidden></p>
+      </div>
+      <ul class="gp-legend">
+        <li><i class="sw-uncut"></i>Uncut stock</li>
+        <li><i class="sw-mid"></i>Cut a little</li>
+        <li><i class="sw-deep"></i>Cut deeper</li>
+        <li><i class="sw-path"></i>Recent toolpath</li>
+        <li><i class="sw-tool"></i>Tool (red while it moves fast, G0)</li>
+      </ul>
+      <p class="small muted mt-06">Files you open are read by your own browser and never uploaded. Most PathForge, Fusion 360 and other 3-axis G-code plays here. The full player in the app also runs the safety check.</p>
+    </div>
+  </section>
 
   <section id="demo" hidden>
     <div class="wrap">
@@ -108,7 +180,7 @@
 
   <section id="how">
     <div class="wrap">
-      <div class="sec-head">
+      <div class="sec-head reveal">
         <p class="eyebrow">Workflow</p>
         <h2>From STL to the machine in four steps</h2>
         <p class="lede">Everything runs on your own computer. Nothing is uploaded.</p>
@@ -169,6 +241,8 @@ G0 G43 H01 Z5.</pre>
           <tr><th scope="row">Rough Clear</th><td>Clears the stock around the part in even rings and leaves a thin skin.</td></tr>
           <tr><th scope="row">Waterline Z</th><td>Roughing plus an exact contour at every layer. For steep walls.</td></tr>
           <tr><th scope="row">Parallel X / Y</th><td>Back-and-forth lines that follow curved tops.</td></tr>
+          <tr><th scope="row">2.5D Pocket <span class="tag-new">NEW</span></th><td>For plates, pockets and steps: every flat floor cut exactly, then the walls.</td></tr>
+          <tr><th scope="row">Adaptive <span class="tag-new">NEW</span></th><td>Roughing with a light stepover and a deep stepdown, for an even tool load.</td></tr>
         </tbody></table></div>
       </div>
       <div>
@@ -179,17 +253,17 @@ G0 G43 H01 Z5.</pre>
           <tr><th scope="row">GRBL 1.1</th><td>Routers and hobby mills</td></tr>
           <tr><th scope="row">Mach3 / Mach4</th><td>Mills and routers</td></tr>
         </tbody></table></div>
-        <p class="muted after-table">Millimetres or inches. Each machine gets its own safe start, tool change and end sequence, with its spindle speed and feed limits.</p>
+        <p class="muted after-table">Millimetres or inches. Each machine gets its own safe start, tool change, drilling cycles and end sequence, with its spindle speed and feed limits. <a href="features.html">All features</a></p>
       </div>
     </div>
   </section>
 
   <section id="limits">
     <div class="wrap">
-      <div class="sec-head"><p class="eyebrow">Limits</p><h2>What it doesn't do yet</h2><p class="lede">So you know before you cut.</p></div>
+      <div class="sec-head reveal"><p class="eyebrow">Limits</p><h2>What it doesn't do yet</h2><p class="lede">So you know before you cut.</p></div>
       <ul class="limits">
         <li><h3>3-axis only</h3><p class="muted">No 4th or 5th axis machining. You can tilt the part before cutting.</p></li>
-        <li><h3>Flat end mills only</h3><p class="muted">Ball-nose tools are planned. A finer finish stepover gives smoother curves.</p></li>
+        <li><h3>STL files only</h3><p class="muted">Export STL from any CAD program. STEP and DXF import are not supported yet.</p></li>
         <li><h3>Windows only</h3><p class="muted">Windows 10 or 11, 64-bit.</p></li>
         <li><h3>Dry run every new job</h3><p class="muted">The check is a simulation. Run each new program in the air first with the feed turned down.</p></li>
       </ul>
@@ -198,7 +272,7 @@ G0 G43 H01 Z5.</pre>
 
   <section id="download">
     <div class="wrap">
-      <div class="sec-head"><p class="eyebrow">Download</p><h2>Free beta until 31 January 2027</h2><p class="lede">The full program, every strategy and every machine. Use it to learn and for real jobs. No account and no card. After the beta, paid licences start.</p></div>
+      <div class="sec-head reveal"><p class="eyebrow">Download</p><h2>Free beta until 31 January 2027</h2><p class="lede">The full program, every strategy and every machine. Use it to learn and for real jobs. No account and no card. After the beta, paid licences start.</p></div>
       <div class="dl">
         <div class="dl-main">
           <p class="dl-ready" hidden><a class="btn" id="dl-btn" href="#" rel="noopener">Download for Windows</a></p>
@@ -215,9 +289,22 @@ G0 G43 H01 Z5.</pre>
           <ul>
             <li>It only comes from this site, hosted on GitHub. Nothing else is installed and nothing is sent over the internet.</li>
             <li>Windows may say <i>"Windows protected your PC"</i> because the program is new and not yet code-signed. Click <b>More info</b>, check the name is <code>PathForgeCAM.exe</code>, then <b>Run anyway</b>.</li>
-            <li id="dl-hash-li" hidden>Check your copy: in PowerShell run <code>Get-FileHash .\PathForgeCAM_Windows.zip</code>. It must print <code class="hash" id="dl-hash"></code></li>
+            <li id="dl-hash-li" hidden>Check your copy: in PowerShell run <code>Get-FileHash .\PathForgeCAM_Windows.zip</code>. It must print <code class="hash" id="dl-hash"></code> <button class="btn line sm js-copy-hash" type="button" hidden>Copy code</button></li>
           </ul>
+          <table class="sysreq"><caption class="ask-sr">System requirements</caption><tbody>
+            <tr><th scope="row">Windows</th><td>Windows 10 or 11, 64-bit</td></tr>
+            <tr><th scope="row">Memory</th><td>4 GB (8 GB for big STL files)</td></tr>
+            <tr><th scope="row">Disk space</th><td>About 250 MB unzipped</td></tr>
+            <tr><th scope="row">Internet</th><td>Only to download it</td></tr>
+          </tbody></table>
+          <p class="dl-links mt-08"><a href="docs.html#verify">How to check your download</a><a class="js-vt" href="#" target="_blank" rel="noopener" hidden>VirusTotal scan report</a><a href="changelog.html">What changed</a></p>
         </div>
+      </div>
+      <div class="trust" aria-label="Why the download is safe">
+        <div><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><span><b>Checked before release</b>61 automatic tests and a self-test of the finished program.</span></div>
+        <div><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 12h8"/></svg><span><b>No installer</b>A plain folder. No admin rights, nothing added to Windows.</span></div>
+        <div><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg><span><b>Works offline</b>Your files never leave your computer. Nothing is sent online.</span></div>
+        <div><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 7h-2a5 5 0 0 0 0 10h2M15 7h2a5 5 0 0 1 0 10h-2M8 12h8"/></svg><span><b>Fingerprinted</b>Every release has a SHA-256 code, so you can prove your copy is the real one.</span></div>
       </div>
       <div class="dl-safety">
         <h3>Before your first cut on a real machine</h3>
@@ -285,11 +372,13 @@ G0 G43 H01 Z5.</pre>
 
   <section id="faq">
     <div class="wrap">
-      <div class="sec-head"><p class="eyebrow">FAQ</p><h2>Questions</h2></div>
+      <div class="sec-head reveal"><p class="eyebrow">FAQ</p><h2>Questions</h2></div>
       <div class="faq">
         <details><summary>Will it work with my machine?</summary><p>PathForge CAM writes G-code for Tormach PathPilot, Haas, GRBL and Mach3/Mach4 controls. Most 3-axis mills and routers use one of these. If yours isn't listed, tell us when you sign up for update emails.</p></details>
         <details><summary>Do I need the internet to use it?</summary><p>No. It runs on your computer. Your files are never uploaded.</p></details>
         <details><summary>Which files can I import?</summary><p>STL files, both binary and text, from any CAD program.</p></details>
+        <details><summary>Which cutters can I use?</summary><p>Flat end mills, ball-nose and bull-nose (corner radius) end mills, and drills. Save them in the tool library with their sizes and get starting feeds and speeds for your material.</p></details>
+        <details><summary>Can it use two tools in one program?</summary><p>Yes. A big tool roughs, and a smaller second tool cuts only where material was left and does the finishing. Small round holes can be drilled with drills from your library. The program stops for each tool change.</p></details>
         <details><summary>Is it really free?</summary><p>Yes, during the beta. The beta version is free for everyone until 31 January 2027, for learning and for paid jobs. The G-code you make is yours.</p></details>
         <details><summary>What happens after the beta?</summary><p>The beta version stops working after 31 January 2027 and paid licences start. Planned prices: Academic free for students and teachers, Personal $299 one-time, Business $800 one-time. Sign up for update emails and we will tell you before the beta ends. The G-code you made stays yours.</p></details>
         <details><summary>Is it safe to download?</summary><p>Download it only from this website. It is a plain folder: nothing is installed, it needs no admin rights, and it never sends data over the internet. You can check the file with the SHA-256 code shown in the download section.</p></details>
@@ -302,14 +391,26 @@ G0 G43 H01 Z5.</pre>
 
 <footer class="foot">
   <div class="wrap">
-    <span>© 2026 PathForge CAM</span>
-    <span id="wa-line">WhatsApp: <b id="wa"></b></span>
-    <span class="r"><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></span>
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top"><svg viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="24" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 18V8h7a3.5 3.5 0 0 1 0 7H6" fill="none" stroke="var(--signal)" stroke-width="2.4" stroke-linejoin="round"/></svg> PathForge CAM</a>
+        <p>CAM for 3-axis mills and routers. Every program is cut on a virtual block before it reaches your machine.</p>
+        <p id="wa-line">WhatsApp: <b id="wa"></b></p>
+      </div>
+      <div><h2>Product</h2><ul><li><a href="#whatsnew">What's new</a></li><li><a href="features.html">Features</a></li><li><a href="#player">Live demo</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="#download">Download</a></li></ul></div>
+      <div><h2>Learn</h2><ul><li><a href="docs.html">Docs and guides</a></li><li><a href="docs.html#start">Getting started</a></li><li><a href="docs.html#first-cut">First cut checklist</a></li><li><a href="#faq">FAQ</a></li><li><a href="#testpack">Free STL test pack</a></li></ul></div>
+      <div><h2>Company</h2><ul><li><a href="about.html">About</a></li><li><a href="showcase.html">Showcase</a></li><li><a href="privacy.html">Privacy</a></li><li><a href="terms.html">Terms</a></li><li><a href="refund.html">Refund policy</a></li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 PathForge CAM</span>
+      <span>Free beta until 31 January 2027</span>
+    </div>
   </div>
 </footer>
 <div class="toasts" id="toasts" aria-live="polite"></div>
 <script src="site-config.js" defer></script>
 <script src="site.js" defer></script>
+<script src="player.js" defer></script>
 <script src="assistant-kb.js" defer></script>
 <script src="assistant.js" defer></script>
 </body>
