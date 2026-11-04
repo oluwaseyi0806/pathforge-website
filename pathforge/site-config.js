@@ -37,7 +37,7 @@ window.PATHFORGE_CONFIG = {
 
   // VirusTotal: scan PathForgeCAM_Windows.zip at virustotal.com, then paste the report
   // link here (it starts with https://www.virustotal.com/). Leave "" to hide the link.
-  virusTotalUrl: "",
+  virusTotalUrl: "https://www.virustotal.com/gui/file/e181df0d109388662eef1e578a9b72613c875b37e4b29806ee3d5e0bfc79788c/detection",
 
   // FREE DOWNLOAD (see RELEASE_GUIDE.md in the software folder).
   // Set downloadReady to true once the zip is uploaded to the GitHub release,
