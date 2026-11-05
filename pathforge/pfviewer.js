@@ -71,6 +71,7 @@
         } else if ((m = /^Z0 = (.+)/.exec(t))) { info.z = m[1];
         } else if ((m = /^SAFETY CHECK (PASSED|FAILED)/.exec(t))) { info.check = m[1] === "PASSED";
         } else if ((m = /^MAX GOUGE ([\d.]+)MM/.exec(t))) { info.gouge = +m[1];
+        } else if ((m = /^EXACT CHECK PASSED, MAX ([\d.]+)MM/.exec(t))) { info.exact = +m[1];
         } else if ((m = /^TOOL\s+(\d+)\b/.exec(t))) {
           if (!hasM6) tool = +m[1];
           addOp("Tool " + m[1], n);
@@ -815,11 +816,13 @@
       pl.appendChild(b);
     });
     cp.appendChild(pl);
-    var pf = this.opts.report || (job.info.check != null ? { ok: job.info.check, gouge: job.info.gouge } : null);
+    var pf = this.opts.report || (job.info.check != null ? { ok: job.info.check, gouge: job.info.gouge, exact: job.info.exact } : null);
+    if (pf && pf.exact == null && job.info.exact != null) pf.exact = job.info.exact;
     var sec = el("div", "pfv-note");
     if (pf) {
       sec.appendChild(el("strong", null, "PathForge part check: " + (pf.ok ? "PASSED" : "FAILED - do not run")));
-      sec.appendChild(el("span", null, pf.ok ? "Checked against your part model" + (pf.gouge != null ? ", deepest cut into the part " + (+pf.gouge).toFixed(3) + " mm." : ".")
+      sec.appendChild(el("span", null, pf.ok ? "Checked against your part model" + (pf.gouge != null ? ", deepest cut into the part " + (+pf.gouge).toFixed(3) + " mm" : "") +
+        (pf.exact != null ? ". Exact check (real tool against the real part, no grid): " + (+pf.exact).toFixed(4) + " mm." : ".")
         : "Open the job in PathForge CAM and fix every error first."));
       if (pf.errors && pf.errors.length) { var ul = el("ul"); pf.errors.slice(0, 12).forEach(function (t) { ul.appendChild(el("li", null, t)); }); sec.appendChild(ul); }
       sec.classList.add(pf.ok ? "ok" : "bad");
