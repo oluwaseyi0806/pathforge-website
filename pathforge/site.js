@@ -310,7 +310,7 @@
         show("We couldn't check that you're human, so the form can't be sent from this browser. Turn off your ad blocker or VPN for this site, or try another browser or your phone, then reload the page.", true);
         return;
       }
-      show("Sign-ups aren't connected yet. Site owner: follow UPGRADE_GUIDE.md, part C.", true);
+      show("Sign-ups are not open yet. Please message us on WhatsApp instead.", true);
     }
 
     form.addEventListener("submit", function (e) {

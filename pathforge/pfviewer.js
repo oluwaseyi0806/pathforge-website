@@ -313,7 +313,11 @@
   Viewer.prototype.load = function (text, name) {
     this.pause();
     var job;
-    try { job = parse(text); if (!job.moves.length) throw new Error("No tool moves found in this file."); this.sim = new Sim(job); }
+    try {
+      job = parse(text);
+      var extra = this.opts.tools || {};
+      Object.keys(extra).forEach(function (k) { if (!job.tools[k]) job.tools[k] = extra[k]; });
+      if (!job.moves.length) throw new Error("No tool moves found in this file."); this.sim = new Sim(job); }
     catch (e) { this.fail("Could not open " + name + ": " + e.message); return false; }
     this.el.msg.hidden = true;
     this.job = job; this.name = name;
