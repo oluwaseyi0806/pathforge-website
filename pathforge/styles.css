@@ -577,3 +577,65 @@ input[type="checkbox"][aria-invalid="true"] { outline: 2px solid var(--err); out
 .timeline .ver .latest { color: #fff; font: 700 .7rem/1 var(--mono); background: var(--pass); }
 :root[data-theme="dark"] .timeline .ver .latest { color: #08160E; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .timeline .ver .latest { color: #08160E; } }
+
+/* ===================================================================
+   v6: BRIGHT look (always light, higher contrast)
+   - white page, dark text, one orange accent
+   - hero, page headers and footer are bright instead of dark steel
+   =================================================================== */
+:root, :root[data-theme="light"] {
+  --paper: #FFFFFF;
+  --panel: #FFFFFF;
+  --ink: #0B1620;        /* near-black text: strong contrast */
+  --ink-2: #33414D;      /* secondary text, still 9:1 on white */
+  --rule: #D5DDE3;
+  --signal: #C2410C;
+  --on-signal: #FFFFFF;
+  --pass: #15803D;
+  color-scheme: light;
+}
+body { background: #FFFFFF; }
+section:nth-of-type(even) { background: #F5F8FA; }
+.head { background: rgba(255,255,255,.96); }
+
+/* hero: bright, with a faint machine-bed grid */
+.hero {
+  color: var(--ink);
+  background:
+    radial-gradient(46rem 24rem at 88% 10%, rgba(194,65,12,.08), transparent 60%),
+    linear-gradient(rgba(11,22,32,.045) 1px, transparent 1px) 0 0 / 32px 32px,
+    linear-gradient(90deg, rgba(11,22,32,.045) 1px, transparent 1px) 0 0 / 32px 32px,
+    linear-gradient(180deg, #FFFFFF, #F3F6F8);
+  border-bottom: 1px solid var(--rule);
+}
+.hero-copy { --ink: #0B1620; --ink-2: #33414D; --rule: #C9D3DA; --signal: #C2410C; --on-signal: #FFFFFF; --pass: #15803D; }
+.chips li { background: #FFFFFF; color: var(--ink-2); }
+.hero .sim { border-color: var(--rule); box-shadow: 0 24px 50px -28px rgba(11,22,32,.35); }
+.pill-new { border-color: var(--rule); background: #FFFFFF; color: var(--ink); }
+.pill-new b { background: var(--signal); color: #FFFFFF; }
+.pill-new:hover { background: #FFF4EE; }
+
+/* sub-page headers: bright */
+.page-hero {
+  color: var(--ink);
+  background:
+    radial-gradient(40rem 20rem at 85% 0%, rgba(194,65,12,.08), transparent 60%),
+    linear-gradient(rgba(11,22,32,.045) 1px, transparent 1px) 0 0 / 32px 32px,
+    linear-gradient(90deg, rgba(11,22,32,.045) 1px, transparent 1px) 0 0 / 32px 32px,
+    #F5F8FA;
+  border-bottom: 1px solid var(--rule);
+}
+.page-hero .wrap { --ink: #0B1620; --ink-2: #33414D; --signal: #C2410C; --on-signal: #FFFFFF; --rule: #C9D3DA; }
+.crumbs, .crumbs a { color: #33414D; }
+.btn.line.on-dark { color: var(--ink); border-color: var(--ink); }
+
+/* footer: light grey with dark text */
+.foot { --ink: #0B1620; --ink-2: #33414D; --signal: #C2410C; background: #EEF2F5; color: var(--ink-2); border-top: 1px solid var(--rule); }
+.foot-bottom { border-top-color: var(--rule); }
+
+/* player: keep the dark screen for the picture, bright frame around it */
+.gp { box-shadow: 0 24px 50px -30px rgba(11,22,32,.45); }
+
+/* cards: crisper edges on white */
+.newcard, .flow li, .limits li, .timeline > li, .toc, .dl-side, .trust div, .gallery figure { border-color: #CBD5DD; }
+.dl-side { background: #F5F8FA; }
