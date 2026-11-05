@@ -48,7 +48,7 @@
   </div>
   <nav aria-label="Menu links">
     <a href="index.html">Home</a>
-    <a href="index.html#whatsnew">What's new in 4.6</a>
+    <a href="index.html#whatsnew">What's new in 4.7</a>
     <a href="index.html#player">Live G-code demo</a>
     <a href="features.html">Features</a>
     <a href="docs.html">Docs and guides</a>
@@ -74,8 +74,12 @@
     <div class="wrap">
       <ol class="timeline" reversed>
       <li class="reveal">
-        <div class="ver"><b>4.6</b><span>November 2026</span><span class="latest">LATEST</span></div>
-        <div><h3>Nine upgrades</h3><ul><li>Tool library with feeds and speeds by material</li><li>Ball-nose and bull-nose end mills, with exact maths</li><li>Two tools: rest machining with a smaller second tool</li><li>Drilling with G81 / G83 and the new 2.5D Pocket strategy</li><li>Clamp and vise keep-out zones</li><li>G-code player that can check any G-code file</li><li>Arcs (G2/G3) for smaller files and smoother motion</li><li>Adaptive roughing</li><li>Stock below the part</li><li>Fix: roughing could return across a corner when ramping into an open path; the checker always caught it, now fixed at the source</li><li>Fix: roughing no longer leaves a thin skin of stock against clamp zones (a later pass had to cut it in one go); clamps now get a clean 0.5 mm air gap</li><li>61 automatic checks before every release</li></ul><p class="hash js-hash-wrap" hidden>SHA-256 <span class="js-hash"></span></p></div>
+        <div class="ver"><b>4.7</b><span>November 2026</span><span class="latest">LATEST</span></div>
+        <div><h3>3D viewer and holder check</h3><ul><li>New 3D G-code viewer: the block is cut in 3D with the real tool (flutes, shank and holder), view buttons, operations list and live readout. Works offline, nothing is uploaded</li><li>Viewer safety check: rapids through material, shank and holder hits, clamp zones, cutting below the stock, spindle off, missing feed, very heavy cuts</li><li>Setup sheet: where zero is, work offset, travel used, first move, tool reach and a checklist</li><li>Tool load on every move, and load colours on the path</li><li>Realistic cutting time: speeding up and slowing down at every corner, per machine</li><li>Reads more G-code from other CAM programs: G91, G18/G19 arcs, G73/G82/G84/G85/G89, G54-G59 with G10</li><li>Holder and shank collision check in the app (set flute length, stickout and holder size)</li><li>Fix: arc radius at start and end now matches within 0.001 mm (GRBL could alarm)</li><li>Fix: rapids no longer clip the strip of stock beside a clamp with centre zero; clamp zones correct in inch jobs</li><li>145 automatic checks and a 56-job machine safety audit before every release</li></ul><p class="hash js-hash-wrap" hidden>SHA-256 <span class="js-hash"></span></p></div>
+      </li>
+      <li class="reveal">
+        <div class="ver"><b>4.6</b><span>November 2026</span></div>
+        <div><h3>Nine upgrades</h3><ul><li>Tool library with feeds and speeds by material</li><li>Ball-nose and bull-nose end mills, with exact maths</li><li>Two tools: rest machining with a smaller second tool</li><li>Drilling with G81 / G83 and the new 2.5D Pocket strategy</li><li>Clamp and vise keep-out zones</li><li>G-code player that can check any G-code file</li><li>Arcs (G2/G3) for smaller files and smoother motion</li><li>Adaptive roughing</li><li>Stock below the part</li><li>Fix: roughing could return across a corner when ramping into an open path; the checker always caught it, now fixed at the source</li><li>Fix: roughing no longer leaves a thin skin of stock against clamp zones (a later pass had to cut it in one go); clamps now get a clean 0.5 mm air gap</li><li>61 automatic checks before every release</li></ul><p class="hash">SHA-256 E181DF0D109388662EEF1E578A9B72613C875B37E4B29806EE3D5E0BFC79788C</p></div>
       </li>
       <li class="reveal">
         <div class="ver"><b>4.5</b><span>1 November 2026</span></div>

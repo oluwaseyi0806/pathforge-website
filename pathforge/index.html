@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="pfviewer.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PathForge CAM","applicationCategory":"DesignApplication","operatingSystem":"Windows 10, Windows 11","description":"CAM software that turns STL files into G-code for 3-axis CNC mills and routers and checks every move on a virtual block before cutting.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"softwareVersion":"4.6"}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PathForge CAM","applicationCategory":"DesignApplication","operatingSystem":"Windows 10, Windows 11","description":"CAM software that turns STL files into G-code for 3-axis CNC mills and routers and checks every move on a virtual block before cutting.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"softwareVersion":"4.7"}
 </script>
 </head>
 <body>
@@ -52,7 +52,7 @@
   </div>
   <nav aria-label="Menu links">
     <a href="#top" aria-current="page">Home</a>
-    <a href="#whatsnew">What's new in 4.6</a>
+    <a href="#whatsnew">What's new in 4.7</a>
     <a href="#player">Live G-code demo</a>
     <a href="features.html">Features</a>
     <a href="docs.html">Docs and guides</a>
@@ -70,7 +70,7 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <a class="pill-new" href="#whatsnew"><b>NEW</b><span>Version 4.6: 9 big upgrades</span></a>
+        <a class="pill-new" href="#whatsnew"><b>NEW</b><span>Version 4.7: 3D viewer + holder check</span></a>
         <p class="eyebrow">CAM for 3-axis mills and routers</p>
         <h1>Cut it on screen first.</h1>
         <p class="lede">PathForge CAM turns your STL into G-code for a 3-axis mill or router. Then it cuts that G-code on a virtual block before you press Cycle Start. Gouges, rapid crashes and overloads show up here, not on your spindle.</p>
@@ -103,7 +103,7 @@
   <section id="whatsnew">
     <div class="wrap">
       <div class="sec-head reveal">
-        <p class="eyebrow">New in version 4.6</p>
+        <p class="eyebrow">New in versions 4.6 and 4.7</p>
         <h2>Nine upgrades, all checked on the virtual block</h2>
         <p class="lede">Each new feature was tested both ways: good programs pass, and programs with planted mistakes are caught.</p>
       </div>
@@ -113,13 +113,13 @@
         <li class="newcard reveal"><span class="n">03</span><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="12" width="12" height="14"/><rect x="18" y="18" width="10" height="8"/><path d="M10 4v6M23 10v6"/></svg><h3>Two tools: rest machining</h3><p class="muted">A big tool roughs. A smaller one cuts only where material was left, then does all the finishing. Tool change written for you.</p></li>
         <li class="newcard reveal"><span class="n">04</span><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3h6v14l-3 6-3-6z"/><path d="M13 8l6 3M13 13l6 3"/><path d="M6 27h20"/></svg><h3>Drilling + 2.5D Pocket</h3><p class="muted">Small round holes are found and drilled with the matching drill: G81, or G83 peck drilling for deep holes. Flat floors cut exactly.</p></li>
         <li class="newcard reveal"><span class="n">05</span><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h24"/><path d="M8 22V10h8v6h8v6"/><path d="M6 6l20 20" stroke-dasharray="3 2"/></svg><h3>Clamp and vise zones</h3><p class="muted">Tell PathForge where your clamps are. Toolpaths keep clear, safe height rises over them, and the checker reports any move that enters one.</p></li>
-        <li class="newcard reveal"><span class="n">06</span><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="24" height="18" rx="2"/><path d="M14 10l6 4-6 4z"/><path d="M8 27h16"/></svg><h3>G-code player</h3><p class="muted">Watch any program cut, line by line, as material disappears. Check any G-code file against your part.</p></li>
+        <li class="newcard reveal"><span class="n">06</span><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="24" height="18" rx="2"/><path d="M14 10l6 4-6 4z"/><path d="M8 27h16"/></svg><h3>3D G-code viewer</h3><p class="muted">Watch any program cut in 3D with the real tool and holder. It checks for crashes and shows tool load and the real cutting time.</p></li>
         <li class="newcard reveal"><span class="n">07</span><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 25C5 13 13 6 25 6"/><circle cx="25" cy="6" r="2"/><circle cx="5" cy="25" r="2"/></svg><h3>Arcs (G2/G3)</h3><p class="muted">Curves are written as real arcs: smaller files and smoother motion, within 0.002 mm of the exact path.</p></li>
         <li class="newcard reveal"><span class="n">08</span><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16c3-6 5-6 8 0s5 6 8 0 5-6 8 0"/><path d="M4 24h24"/></svg><h3>Adaptive roughing</h3><p class="muted">Light sideways cuts with a deep stepdown, so the tool load stays even and roughing is faster on real machines.</p></li>
         <li class="newcard reveal"><span class="n">09</span><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20h22v6H5z"/><path d="M9 20v-9h14v9" stroke-dasharray="3 2"/></svg><h3>Stock below the part</h3><p class="muted">Leave a base under the part that is never cut, to hold it, and to drill through holes all the way.</p></li>
       </ul>
       <div class="newnote reveal">
-        <a class="btn" href="#download">Download <span class="js-version">4.6 Free Beta</span></a>
+        <a class="btn" href="#download">Download <span class="js-version">4.7 Free Beta</span></a>
         <a href="features.html">See every feature</a>
         <a href="changelog.html">Read the full changelog</a>
       </div>
@@ -130,9 +130,9 @@
       <div class="sec-head reveal">
         <p class="eyebrow">Live demo</p>
         <h2>Watch a real PathForge program cut</h2>
-        <p class="lede">This is the exact G-code PathForge CAM 4.6 wrote for a small aluminium bracket: two end mills and a drill, on a Tormach. It plays right here in your browser, in 3D, with the real tools.</p>
+        <p class="lede">This is the exact G-code PathForge CAM 4.7 wrote for a small aluminium bracket: two end mills and a drill, on a Tormach, held in a vise (the orange jaws). It plays right here in your browser, in 3D, with the real tools.</p>
       </div>
-      <div class="pfv reveal" id="gplayer" data-src="media/demo-bracket.nc" data-name="demo-bracket.nc - Tormach 770, 2.5D Pocket"></div>
+      <div class="pfv reveal" id="gplayer" data-src="media/demo-bracket.nc" data-name="demo-bracket.nc - Tormach 770, 2.5D Pocket, vise"></div>
       <p class="small muted mt-06">Drag to turn the view, right-drag or Shift-drag to move it, scroll or pinch to zoom. Click an operation to jump to it.</p>
       <p class="small muted mt-06">Files you open are read by your own browser and never uploaded. Most PathForge, Fusion 360 and other 3-axis G-code plays here. The full player in the app also runs the safety check.</p>
     </div>

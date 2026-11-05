@@ -44,9 +44,9 @@ window.PATHFORGE_CONFIG = {
   // and paste the code from PathForgeCAM_Windows.zip.sha256.txt.
   downloadReady: true,
   downloadUrl: "https://github.com/oluwaseyi0806/pathforge-website/releases/latest/download/PathForgeCAM_Windows.zip",
-  downloadVersion: "4.6 Free Beta",
+  downloadVersion: "4.7 Free Beta",
   downloadSizeMb: 70,         // e.g. 95 - shown on the button; 0 hides it
-  downloadSha256: "E181DF0D109388662EEF1E578A9B72613C875B37E4B29806EE3D5E0BFC79788C",
+  downloadSha256: "7B3D144C56BA12A036200D784EDA86E87047E4A9C56FA6C8613979C9743AF3EC",
 
   // Visitor statistics. Turn on in Vercel first (guide part H), then set true.
   vercelAnalytics: false

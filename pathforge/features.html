@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Features | PathForge CAM</title>
-<meta name="description" content="Every PathForge CAM feature: safety check, strategies, tool library, ball and bull-nose tools, rest machining, drilling, clamp zones and the G-code player.">
+<meta name="description" content="Every PathForge CAM feature: safety check, strategies, tool library, ball and bull-nose tools, rest machining, drilling, clamp zones and the 3D G-code viewer.">
 <meta property="og:title" content="Features | PathForge CAM">
-<meta property="og:description" content="Every PathForge CAM feature: safety check, strategies, tool library, ball and bull-nose tools, rest machining, drilling, clamp zones and the G-code player.">
+<meta property="og:description" content="Every PathForge CAM feature: safety check, strategies, tool library, ball and bull-nose tools, rest machining, drilling, clamp zones and the 3D G-code viewer.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="og-image.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -48,7 +48,7 @@
   </div>
   <nav aria-label="Menu links">
     <a href="index.html">Home</a>
-    <a href="index.html#whatsnew">What's new in 4.6</a>
+    <a href="index.html#whatsnew">What's new in 4.7</a>
     <a href="index.html#player">Live G-code demo</a>
     <a href="features.html" aria-current="page">Features</a>
     <a href="docs.html">Docs and guides</a>
@@ -67,7 +67,7 @@
     <div class="wrap">
       <p class="crumbs"><a href="index.html">Home</a> / Features</p>
       <h1>Everything PathForge CAM does</h1>
-      <p class="lede">From STL to checked G-code for 3-axis mills and routers. Version 4.6 adds nine upgrades, marked <span class="tag-new tag-inline">NEW</span>.</p>
+      <p class="lede">From STL to checked G-code for 3-axis mills and routers. Versions 4.6 and 4.7 add new features, marked <span class="tag-new tag-inline">NEW</span>.</p>
       <div class="ctas"><a class="btn" href="index.html#download">Download free</a><a class="btn line on-dark" href="index.html#player">Watch it cut</a></div>
     </div>
   </section>
@@ -118,8 +118,8 @@ G80</pre><figcaption>Real drilling code from the demo bracket (Tormach). GRBL ge
       <figure class="feat-media narrow"><img src="screenshots/v46-clamps.webp" width="640" height="700" alt="More options window, clamps tab: a table of keep-out boxes" loading="lazy" decoding="async"></figure>
     </div>
     <div class="feat reveal">
-      <div class="feat-copy"><p class="eyebrow">G-code player</p><h2>Watch the program before the machine does <span class="tag-new">NEW</span></h2><p class="muted">Play any G-code, from PathForge or any other CAM, and watch material disappear line by line. Step forward and back, jump with the slider, and run the safety check on any file.</p><ul><li><a href="index.html#player">Try the live player in your browser</a></li></ul></div>
-      <figure class="feat-media"><img src="screenshots/v46-player.webp" srcset="screenshots/v46-player-800.webp 800w, screenshots/v46-player.webp 1200w" sizes="(max-width: 860px) 100vw, 640px" width="1200" height="740" alt="G-code player window: top view of the block with the path so far, and the G-code listing on the right" loading="lazy" decoding="async"></figure>
+      <div class="feat-copy"><p class="eyebrow">3D G-code viewer</p><h2>Watch the program before the machine does <span class="tag-new">NEW</span></h2><p class="muted">Play any G-code, from PathForge or any other CAM, and watch the block being cut in 3D with the real tool and holder. The viewer checks for rapids through material, holder and clamp hits, shows tool load on every move and the real cutting time with acceleration, and lists what to set up at the machine.</p><ul><li><a href="index.html#player">Try the live 3D viewer in your browser</a></li></ul></div>
+      <figure class="feat-media"><img src="screenshots/v47-viewer.webp" srcset="screenshots/v47-viewer-800.webp 800w, screenshots/v47-viewer.webp 1200w" sizes="(max-width: 860px) 100vw, 640px" width="1200" height="740" alt="3D G-code viewer: the bracket being roughed in a vise, with the readout, the path and the safety check panel" loading="lazy" decoding="async"></figure>
     </div>
     <div class="feat reveal">
       <div class="feat-copy"><p class="eyebrow">Machines</p><h2>G-code for your control</h2><p class="muted">Each control gets its own safe start, tool change, arcs, drilling cycles and end sequence, with its spindle speed and feed limits. Millimetres or inches.</p></div>
