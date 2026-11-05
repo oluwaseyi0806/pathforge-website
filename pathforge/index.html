@@ -16,6 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <script src="fonts.js" async></script>
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="pfviewer.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"PathForge CAM","applicationCategory":"DesignApplication","operatingSystem":"Windows 10, Windows 11","description":"CAM software that turns STL files into G-code for 3-axis CNC mills and routers and checks every move on a virtual block before cutting.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"softwareVersion":"4.6"}
 </script>
@@ -129,39 +130,10 @@
       <div class="sec-head reveal">
         <p class="eyebrow">Live demo</p>
         <h2>Watch a real PathForge program cut</h2>
-        <p class="lede">This is the exact G-code PathForge CAM 4.6 wrote for a small aluminium bracket: two end mills and a drill, on a Tormach. It plays right here in your browser.</p>
+        <p class="lede">This is the exact G-code PathForge CAM 4.6 wrote for a small aluminium bracket: two end mills and a drill, on a Tormach. It plays right here in your browser, in 3D, with the real tools.</p>
       </div>
-      <div class="gp reveal" id="gplayer" data-src="media/demo-bracket.nc" data-name="demo-bracket.nc - Tormach 770, 2.5D Pocket">
-        <canvas width="900" height="560" role="img" aria-label="Top view of the block being cut by the G-code program. Darker areas are deeper."></canvas>
-        <div class="gp-side">
-          <p class="gp-file-name" data-out="name">Loading the demo program...</p>
-          <dl class="gp-read">
-            <div><dt>Tool</dt><dd data-out="tool">-</dd></div>
-            <div><dt>Progress</dt><dd data-out="time">0 %</dd></div>
-            <div class="wide2"><dt>Position (G-code numbers)</dt><dd data-out="pos">-</dd></div>
-            <div class="wide2"><dt>Line</dt><dd data-out="line">-</dd></div>
-          </dl>
-          <pre class="gp-lines" aria-label="G-code lines around the current move"></pre>
-        </div>
-        <div class="gp-bar">
-          <button type="button" data-act="start" aria-label="Back to the start">|&lt;</button>
-          <button type="button" data-act="back" aria-label="One move back">&lt;</button>
-          <button type="button" data-act="play" aria-pressed="false">Play</button>
-          <button type="button" data-act="fwd" aria-label="One move forward">&gt;</button>
-          <button type="button" data-act="end" aria-label="Jump to the end">&gt;|</button>
-          <input class="gp-seek" type="range" min="0" max="1" value="0" step="1" aria-label="Position in the program">
-          <label>Speed <select class="gp-speed"><option value="0">Slow</option><option value="1">Normal</option><option value="2" selected>Fast</option><option value="3">Faster</option><option value="4">Fastest</option></select></label>
-          <span class="gp-filebtn">Open your own G-code<input class="gp-file" type="file" accept=".nc,.gcode,.ngc,.tap,.txt,.cnc" aria-label="Open your own G-code file"></span>
-        </div>
-        <p class="gp-status" role="status" hidden></p>
-      </div>
-      <ul class="gp-legend">
-        <li><i class="sw-uncut"></i>Uncut stock</li>
-        <li><i class="sw-mid"></i>Cut a little</li>
-        <li><i class="sw-deep"></i>Cut deeper</li>
-        <li><i class="sw-path"></i>Recent toolpath</li>
-        <li><i class="sw-tool"></i>Tool (red while it moves fast, G0)</li>
-      </ul>
+      <div class="pfv reveal" id="gplayer" data-src="media/demo-bracket.nc" data-name="demo-bracket.nc - Tormach 770, 2.5D Pocket"></div>
+      <p class="small muted mt-06">Drag to turn the view, right-drag or Shift-drag to move it, scroll or pinch to zoom. Click an operation to jump to it.</p>
       <p class="small muted mt-06">Files you open are read by your own browser and never uploaded. Most PathForge, Fusion 360 and other 3-axis G-code plays here. The full player in the app also runs the safety check.</p>
     </div>
   </section>
@@ -410,7 +382,7 @@ G0 G43 H01 Z5.</pre>
 <div class="toasts" id="toasts" aria-live="polite"></div>
 <script src="site-config.js" defer></script>
 <script src="site.js" defer></script>
-<script src="player.js" defer></script>
+<script src="pfviewer.js" defer></script>
 <script src="assistant-kb.js" defer></script>
 <script src="assistant.js" defer></script>
 </body>
